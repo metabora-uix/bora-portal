@@ -709,6 +709,136 @@
     .banner__btn:active { transform: scale(0.97); }
 
     /* ============================================================
+       SECTION 07 — FOOTER  (Figma node 4046:3653)
+       1920×470, bg: #13131A
+    ============================================================ */
+
+    .footer {
+      width: 100%;
+      background: var(--color-black);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* inner: max 1344, column, space-between, min-h:470 */
+    .footer__inner {
+      max-width: var(--layout-content);
+      margin: 0 auto;
+      min-height: 470px;
+      padding: 80px 0 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* deco — layout_CNM3QI: left:288, top:40 / layout_JR5V99: right:288, top:40, 142×82 */
+    .footer__deco-cross {
+      position: absolute;
+      left: 288px;
+      top: 40px;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .footer__deco-grid {
+      position: absolute;
+      right: 288px;
+      top: 40px;
+      width: 142px;
+      height: 82px;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* contact group: layout_67KIK0: column, gap:24, w:285 */
+    .footer__contact {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    /* "How can we help you?" — Title/title-28-M: 500, 28px, 140%, white */
+    .footer__contact-title {
+      font-family: var(--font-body);
+      font-size: var(--text-title-28);
+      font-weight: var(--fw-medium);
+      line-height: var(--lh-normal);
+      color: var(--color-white);
+    }
+
+    /* Button Size=48: pad:13px 20px, radius:24, 1px white, body-16-M, gap:6 */
+    .footer__contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 13px 20px;
+      border-radius: var(--radius-btn-sm);
+      border: 1px solid var(--color-white);
+      background: transparent;
+      font-family: var(--font-body);
+      font-size: var(--text-body-16);
+      font-weight: var(--fw-medium);
+      line-height: var(--lh-normal);
+      color: var(--color-white);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity 0.16s, transform 0.16s;
+    }
+    .footer__contact-btn:hover  { opacity: 0.72; }
+    .footer__contact-btn:active { transform: scale(0.97); }
+
+    /* bottom row: left(logo+copyright) / right(SNS) */
+    .footer__bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .footer__left {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* logo: layout_BT50FN 122.67×40 — white via filter */
+    .footer__logo {
+      width: 123px;
+      height: 40px;
+      display: block;
+      filter: brightness(0) invert(1);
+    }
+
+    /* Body/B-12-R: 400, 12px, 130%, #90909A */
+    .footer__copyright {
+      font-family: var(--font-body);
+      font-size: var(--text-caption-12);
+      font-weight: var(--fw-regular);
+      line-height: 1.30;
+      color: #90909A;
+    }
+
+    /* SNS row: gap:40 (Figma: 1592-1552=40px) */
+    .footer__sns {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .footer__sns-link {
+      display: block;
+      line-height: 0;
+      transition: opacity 0.16s;
+    }
+    .footer__sns-link:hover { opacity: 0.72; }
+
+    .footer__sns-icon {
+      width: 40px;
+      height: 40px;
+      display: block;
+    }
+
+    /* ============================================================
        RESPONSIVE
     ============================================================ */
     @media (max-width: 1280px) {
@@ -768,6 +898,11 @@
       }
       .banner__txt { padding-right: 0; }
       .banner__heading { font-size: clamp(28px, 8vw, 40px); }
+
+      .footer__deco-cross { left: 24px; }
+      .footer__deco-grid  { right: 24px; width: 80px; height: auto; }
+      .footer__inner { min-height: auto; padding: 60px 0 40px; }
+      .footer__bottom { flex-direction: column; align-items: flex-start; gap: 32px; }
 
     }
 
@@ -1031,6 +1166,49 @@
     <a href="#" class="banner__btn">White paper</a>
 
   </section>
+
+  <!-- ============================================================
+       SECTION 07 — FOOTER  (Figma node 4046:3653)
+       1920×470, bg: #13131A
+  ============================================================ -->
+  <footer class="footer" aria-label="Site Footer">
+
+    <!-- deco: 좌상단 (x:288, y:40) -->
+    <img class="footer__deco-cross" src="./assets/icons/deco-footer-cross.svg" alt="" aria-hidden="true" draggable="false" />
+    <!-- deco: 우상단 (x:1490, y:40, 142×82) -->
+    <img class="footer__deco-grid" src="./assets/icons/deco-footer-grid.svg" alt="" aria-hidden="true" draggable="false" />
+
+    <div class="footer__inner">
+
+      <!-- contact: column, gap:24 — x:288, y:80 -->
+      <div class="footer__contact">
+        <!-- Title/title-28-M: 500, 28px, 140%, white -->
+        <p class="footer__contact-title">How can we help you?</p>
+        <!-- Size=48 outlined white: pad:13px 20px, radius:24, body-16-M -->
+        <a href="#" class="footer__contact-btn">Contact us <span aria-hidden="true">→</span></a>
+      </div>
+
+      <!-- bottom row: 좌(logo + copyright) / 우(SNS icons) -->
+      <div class="footer__bottom">
+        <div class="footer__left">
+          <!-- logo: 122.67×40, white — layout_BT50FN -->
+          <img class="footer__logo" src="./assets/icons/logo.svg" alt="BORA" draggable="false" />
+          <!-- Body/B-12-R: 400, 12px, 130%, #90909A -->
+          <p class="footer__copyright">© METABORA GAMES - FZCO All Rights Reserved</p>
+        </div>
+        <!-- SNS: gap:40, x:1512(medium), x:1592(twitter), 40×40 -->
+        <div class="footer__sns">
+          <a href="#" class="footer__sns-link" aria-label="Medium">
+            <img class="footer__sns-icon" src="./assets/icons/ic-sns-medium.svg" alt="Medium" draggable="false" />
+          </a>
+          <a href="#" class="footer__sns-link" aria-label="X (Twitter)">
+            <img class="footer__sns-icon" src="./assets/icons/ic-sns-x.svg" alt="X" draggable="false" />
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
 
 </body>
 </html>
