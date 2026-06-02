@@ -639,6 +639,76 @@
     }
 
     /* ============================================================
+       SECTION 06 — BANNER  (Figma node 3846:6579)
+       1920×340, row space-between center, pad:113px 288px 114px
+    ============================================================ */
+
+    .banner {
+      width: 100%;
+      min-height: 340px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 113px var(--layout-gutter) 114px;
+      background-image: url('./assets/images/bg-banner.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* layout_9N3JS1: column, stretch, gap:32, fill */
+    .banner__txt {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 32px;
+      flex: 1;
+      padding-right: 60px;
+    }
+
+    /* style_LDZD89: Area Variable SemiBold 48px / 110% / #13131A */
+    .banner__heading {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: var(--fw-semibold);
+      line-height: 1.10;
+      color: var(--color-black);
+      letter-spacing: -0.02em;
+    }
+
+    /* Body/body-16-R: 400, 16px, 140%, #13131A */
+    .banner__sub {
+      font-family: var(--font-body);
+      font-size: var(--text-body-16);
+      font-weight: var(--fw-regular);
+      line-height: var(--lh-normal);
+      color: var(--color-black);
+    }
+
+    /* Button base: w:170, pad:15.5px 20px, radius:28, outlined black */
+    .banner__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 170px;
+      padding: 15.5px 20px;
+      border-radius: var(--radius-btn-lg);
+      border: 1px solid var(--color-black);
+      background: transparent;
+      font-family: var(--font-body);
+      font-size: var(--text-body-18);
+      font-weight: var(--fw-medium);
+      line-height: var(--lh-normal);
+      color: var(--color-black);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: opacity 0.16s, transform 0.16s;
+    }
+    .banner__btn:hover  { opacity: 0.72; }
+    .banner__btn:active { transform: scale(0.97); }
+
+    /* ============================================================
        RESPONSIVE
     ============================================================ */
     @media (max-width: 1280px) {
@@ -650,6 +720,9 @@
 
       .news { padding: 80px clamp(24px, 5vw, 288px); }
       .news__txt { width: min(711px, 100%); }
+
+      .banner { padding: 80px clamp(24px, 5vw, 288px); }
+      .banner__heading { font-size: clamp(32px, 3.5vw, 48px); }
     }
 
     @media (max-width: 768px) {
@@ -685,6 +758,16 @@
       .news__cards { flex-direction: column; align-items: stretch; }
       .news__card { height: auto; }
       .news__card-thumb { height: 200px; }
+
+      .banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 40px;
+        padding: 60px 24px;
+        min-height: auto;
+      }
+      .banner__txt { padding-right: 0; }
+      .banner__heading { font-size: clamp(28px, 8vw, 40px); }
 
     }
 
@@ -925,6 +1008,28 @@
       </div>
 
     </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 06 — BANNER  (Figma node 3846:6579)
+       1920×340, row space-between center, bg: bg-banner.png
+  ============================================================ -->
+  <section class="banner" aria-label="White Paper Banner">
+
+    <!-- txt: column, gap:32, fill — 좌측 텍스트 영역 -->
+    <div class="banner__txt">
+      <!-- style_LDZD89: Area Variable SemiBold 48px / 110% -->
+      <h2 class="banner__heading">Go to Read White paper</h2>
+      <!-- Body/body-16-R -->
+      <p class="banner__sub">
+        We wish you success with the BORA PORTAL project and are here to support you.<br>
+        If you have any questions about the White Paper, don't hesitate to contact us.
+      </p>
+    </div>
+
+    <!-- Button base: w:170, pad:15.5px 20px, radius:28, 1px outlined black -->
+    <a href="#" class="banner__btn">White paper</a>
+
   </section>
 
 </body>
