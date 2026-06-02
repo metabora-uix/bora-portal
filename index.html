@@ -752,8 +752,9 @@
       min-height: 470px;
       padding: 80px var(--layout-gutter) 40px;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       justify-content: space-between;
+      align-items: stretch;
     }
 
     /* deco — layout_CNM3QI: left:288, top:40 / layout_JR5V99: right:288, top:40, 142×82 */
@@ -813,14 +814,16 @@
     .footer__contact-btn:hover  { opacity: 0.72; }
     .footer__contact-btn:active { transform: scale(0.97); }
 
-    /* bottom row: left(logo+copyright) / right(SNS) */
-    .footer__bottom {
+    /* 좌측 컬럼: contact(상단) + brand(하단), column space-between */
+    .footer__left {
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      align-items: flex-end;
+      align-items: flex-start;
     }
 
-    .footer__left {
+    /* logo + copyright 묶음 */
+    .footer__brand {
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -843,11 +846,12 @@
       color: #90909A;
     }
 
-    /* SNS row: gap:40 (Figma: 1592-1552=40px) */
+    /* SNS row: gap:40, 우측 정렬, 하단 고정 */
     .footer__sns {
       display: flex;
       align-items: center;
       gap: 40px;
+      align-self: flex-end;
     }
 
     .footer__sns-link {
@@ -926,8 +930,9 @@
 
       .footer__deco-cross { left: 24px; }
       .footer__deco-grid  { right: 24px; width: 80px; height: auto; }
-      .footer__inner { min-height: auto; padding: 60px 24px 40px; }
-      .footer__bottom { flex-direction: column; align-items: flex-start; gap: 32px; }
+      .footer__inner { min-height: auto; padding: 60px 24px 40px; flex-direction: column; gap: 48px; }
+      .footer__left { justify-content: flex-start; gap: 32px; }
+      .footer__sns  { align-self: flex-start; }
 
     }
 
@@ -1217,31 +1222,28 @@
 
     <div class="footer__inner">
 
-      <!-- contact: column, gap:24 — x:288, y:80 -->
-      <div class="footer__contact">
-        <!-- Title/title-28-M: 500, 28px, 140%, white -->
-        <p class="footer__contact-title">How can we help you?</p>
-        <!-- Size=48 outlined white: pad:13px 20px, radius:24, body-16-M -->
-        <a href="#" class="footer__contact-btn">Contact us <span aria-hidden="true">→</span></a>
-      </div>
-
-      <!-- bottom row: 좌(logo + copyright) / 우(SNS icons) -->
-      <div class="footer__bottom">
-        <div class="footer__left">
-          <!-- logo: 122.67×40, white — layout_BT50FN -->
+      <!-- 좌측: contact(상단) + brand(하단) -->
+      <div class="footer__left">
+        <!-- contact: title + button -->
+        <div class="footer__contact">
+          <p class="footer__contact-title">How can we help you?</p>
+          <a href="#" class="footer__contact-btn">Contact us <span aria-hidden="true">→</span></a>
+        </div>
+        <!-- brand: logo + copyright -->
+        <div class="footer__brand">
           <img class="footer__logo" src="./assets/icons/logo.svg" alt="BORA" draggable="false" />
-          <!-- Body/B-12-R: 400, 12px, 130%, #90909A -->
           <p class="footer__copyright">© METABORA GAMES - FZCO All Rights Reserved</p>
         </div>
-        <!-- SNS: gap:40, x:1512(medium), x:1592(twitter), 40×40 -->
-        <div class="footer__sns">
-          <a href="#" class="footer__sns-link" aria-label="Medium">
-            <img class="footer__sns-icon" src="./assets/icons/ic-sns-medium.svg" alt="Medium" draggable="false" />
-          </a>
-          <a href="#" class="footer__sns-link" aria-label="X (Twitter)">
-            <img class="footer__sns-icon" src="./assets/icons/ic-sns-x.svg" alt="X" draggable="false" />
-          </a>
-        </div>
+      </div>
+
+      <!-- 우측: SNS icons (align-self: flex-end) -->
+      <div class="footer__sns">
+        <a href="#" class="footer__sns-link" aria-label="Medium">
+          <img class="footer__sns-icon" src="./assets/icons/ic-sns-medium.svg" alt="Medium" draggable="false" />
+        </a>
+        <a href="#" class="footer__sns-link" aria-label="X (Twitter)">
+          <img class="footer__sns-icon" src="./assets/icons/ic-sns-x.svg" alt="X" draggable="false" />
+        </a>
       </div>
 
     </div>
