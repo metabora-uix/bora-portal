@@ -79,24 +79,19 @@
     }
 
     /* ============================================================
-       HERO  (Figma node 3720:8048 — 1920×704px)
+       HERO  (3840×2216 @2x → 1920×1108 at 1x)
     ============================================================ */
     .hero {
       position: relative;
       width: 100%;
       max-width: var(--layout-max);
-      /* height: var(--hero-h) 제거 — img 태그 비율로 자동 결정 */
+      height: 1108px;
       margin: 0 auto;
       overflow: hidden;
-    }
-
-    /* 배경 이미지 — <img>로 교체 (3840×2216 → 1920×1108 at 100% width) */
-    .hero__bg {
-      display: block;
-      width: 100%;
-      height: auto;
-      pointer-events: none;
-      user-select: none;
+      background-image: url('./assets/images/bg-hero.png');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
     }
 
     /* deco-cross-grid (node 3720:8069)
@@ -338,8 +333,6 @@
     }
 
     @media (max-width: 768px) {
-      .hero__bg { min-height: 100svh; object-fit: cover; object-position: center top; }
-
       .gnb { padding: 14px 20px; }
       .gnb__btns .btn--outlined { display: none; }
       .gnb__btns .btn--filled {
@@ -378,17 +371,10 @@
 
   <section class="hero" aria-label="Hero">
 
-    <!-- 배경 이미지 (3840×2216 → width:100% 비율 유지) -->
+    <!-- deco-cross-grid: 좌측 상단 오버레이 (x:288, y:170) -->
     <img
       class="hero__deco-cross-grid"
       src="./assets/icons/deco-cross-grid.svg"
-      alt=""
-      aria-hidden="true"
-      draggable="false"
-    />
-    <img
-      class="hero__bg"
-      src="./assets/images/bg-hero.png"
       alt=""
       aria-hidden="true"
       draggable="false"
