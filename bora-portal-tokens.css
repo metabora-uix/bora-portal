@@ -1,0 +1,210 @@
+/* ==========================================================
+   BORA Portal Renewal — Design Tokens
+   Figma: BORA Portal Renewal / node 3720-8045
+   Canvas: 1920 × 5554 px (PC full-page)
+   ========================================================== */
+
+:root {
+
+  /* ----------------------------------------------------------
+     COLOR — Solid
+  ---------------------------------------------------------- */
+
+  /* Base */
+  --color-white:           #FFFFFF;   /* 기본 배경, 카드 배경, 라이트 텍스트 */
+  --color-black:           #13131A;   /* 기본 텍스트, 다크 섹션 배경 */
+  --color-pure-black:      #000000;   /* 벡터 stroke 전용 */
+
+  /* Gray scale */
+  --color-gray-400:        #767680;   /* 날짜, 보조 레이블, section label */
+  --color-gray-600:        #4D4D4D;   /* 중간 강조 텍스트 */
+
+  /* Brand Blue */
+  --color-blue-brand:      #4545C4;   /* DEEPS 섹션 배경 */
+  --color-blue-accent:     #5959FF;   /* 강조 블루, 벡터 포인트 */
+
+  /* Pastel / Light */
+  --color-cyan-light:      #D7FEFE;   /* 밝은 청록 */
+  --color-cyan-light-2:    #D8FEFE;   /* 밝은 청록 (변형) */
+  --color-purple-soft:     #94A9F2;   /* 연보라 */
+
+  /* Alpha */
+  --color-white-30:        rgba(255, 255, 255, 0.30);
+  --color-white-70:        rgba(255, 255, 255, 0.70);
+
+  /* Border */
+  --color-border-card:     rgba(255, 255, 255, 0.12);  /* 뉴스 카드 테두리 (1px) — Figma fill_CMSKHP, 값 미파싱 시 추정 */
+
+
+  /* ----------------------------------------------------------
+     COLOR — Gradient
+  ---------------------------------------------------------- */
+
+  --gradient-hero:
+    linear-gradient(
+      119deg,
+      rgba(252, 253, 255, 1)  39%,
+      rgba(102, 125, 232, 1)  94%,
+      rgba(70,  23,  196, 1) 100%
+    );
+
+  --gradient-purple-deep:
+    linear-gradient(
+      160deg,
+      rgba(70,  23,  196, 1) 32%,
+      rgba(108, 68,  207, 1) 78%
+    );
+
+  --gradient-green-cyan:
+    linear-gradient(
+      -51deg,
+      rgba(106, 255, 112, 1)  0%,
+      rgba(38,  198, 218, 1) 79%
+    );
+
+  --gradient-gray-fade:
+    linear-gradient(
+      135deg,
+      rgba(118, 118, 128, 1)   0%,
+      rgba(118, 118, 128, 0) 100%
+    );
+
+  --gradient-cyan-white:
+    linear-gradient(
+      217deg,
+      rgba(135, 255, 255, 1)  0%,
+      rgba(200, 222, 255, 1) 57%,
+      rgba(255, 255, 255, 1) 100%
+    );
+
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY — Font Family
+  ---------------------------------------------------------- */
+
+  --font-display: 'Area Variable', sans-serif;  /* 히어로 헤드라인 전용 */
+  --font-body:    'Pretendard JP', sans-serif;  /* 전체 본문 */
+
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY — Font Size
+  ---------------------------------------------------------- */
+
+  --text-hero:      100px;   /* 히어로 메인 헤드라인 */
+  --text-title-28:   28px;   /* 카드 제목, CTA 헤드라인, contact */
+  --text-title-22:   22px;   /* 섹션 레이블 타이틀 */
+  --text-body-18:    18px;   /* 서브 카피, 버튼(56 size) */
+  --text-body-16:    16px;   /* 본문, 날짜, 태그, 버튼(48 size) */
+  --text-caption-12: 12px;   /* 푸터 copyright */
+
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY — Font Weight
+  ---------------------------------------------------------- */
+
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY — Line Height
+  ---------------------------------------------------------- */
+
+  --lh-tight:  130%;   /* 히어로 헤드라인 */
+  --lh-normal: 140%;   /* 본문 전체 */
+
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY — Composite Styles (shorthand 참고용)
+  ---------------------------------------------------------- */
+
+  /* Hero headline */
+  --style-hero:     var(--fw-semibold) var(--text-hero) / var(--lh-tight)   var(--font-display);
+
+  /* Section main heading (예: "Kaia and BORA unify...") */
+  --style-heading:  var(--fw-semibold) clamp(36px, 3.5vw, 56px) / var(--lh-tight) var(--font-body);
+
+  /* title-28-M */
+  --style-title-28: var(--fw-medium)  var(--text-title-28) / var(--lh-normal) var(--font-body);
+
+  /* title-22-M */
+  --style-title-22: var(--fw-medium)  var(--text-title-22) / var(--lh-normal) var(--font-body);
+
+  /* body-18-M */
+  --style-body-18-m: var(--fw-medium)  var(--text-body-18) / var(--lh-normal) var(--font-body);
+
+  /* body-18-R */
+  --style-body-18-r: var(--fw-regular) var(--text-body-18) / var(--lh-normal) var(--font-body);
+
+  /* body-16-M */
+  --style-body-16-m: var(--fw-medium)  var(--text-body-16) / var(--lh-normal) var(--font-body);
+
+  /* body-16-R */
+  --style-body-16-r: var(--fw-regular) var(--text-body-16) / var(--lh-normal) var(--font-body);
+
+  /* caption-12-R */
+  --style-caption:  var(--fw-regular) var(--text-caption-12) / var(--lh-normal) var(--font-body);
+
+
+  /* ----------------------------------------------------------
+     LAYOUT — Grid & Gutter
+  ---------------------------------------------------------- */
+
+  --layout-max-width:     1920px;
+  --layout-content-width: 1344px;   /* max-width - gutter × 2 */
+  --layout-gutter:         288px;   /* 좌우 여백 (GNB 기준 16px + 288px padding) */
+  --layout-gnb-padding: 16px 288px; /* GNB 내부 padding */
+
+
+  /* ----------------------------------------------------------
+     SPACING — Section & Component
+  ---------------------------------------------------------- */
+
+  /* Section */
+  --spacing-section-pad:    30px;   /* deeps 섹션 내부 padding */
+  --spacing-section-gap:    60px;   /* deeps 섹션 이미지 ↔ 텍스트 gap */
+
+  /* Button group */
+  --spacing-btn-group-gap:  12px;   /* 버튼 2개 나란히 놓일 때 gap */
+  --spacing-btn-icon-gap:    6px;   /* 버튼 내부 아이콘 ↔ 레이블 gap */
+
+  /* Button padding */
+  --spacing-btn-48:  13px 20px;     /* Button base Size=48 내부 */
+  --spacing-btn-56:  13px 20px;     /* Button base Size=56 내부 (동일 패턴) */
+
+  /* Logo / BI */
+  --spacing-bi-gap:          7px;   /* BORA BI symbol ↔ logotype gap */
+
+
+  /* ----------------------------------------------------------
+     BORDER RADIUS
+  ---------------------------------------------------------- */
+
+  --radius-game-thumb:  12px;   /* 게임 썸네일 (box, scratch, classic) */
+  --radius-png-thumb:   14px;   /* png 게임 썸네일 */
+  --radius-card:        16px;   /* 뉴스 카드, deeps 섹션 */
+  --radius-ms-thumb:    18px;   /* ms 게임 썸네일 */
+  --radius-btn-sm:      24px;   /* Button Size=48 */
+  --radius-btn-lg:      28px;   /* Button Size=56 */
+  --radius-pill:       999px;   /* 태그, 아이콘 서클 */
+
+
+  /* ----------------------------------------------------------
+     EFFECT — Blur & Shadow
+  ---------------------------------------------------------- */
+
+  --blur-backdrop-soft:   blur(7px);    /* 히어로 배경 오버레이 */
+  --blur-backdrop-strong: blur(44px);   /* 히어로 배경 오버레이 (강) */
+  --blur-bg-glow:         blur(140px);  /* 배경 glow 효과 */
+
+
+  /* ----------------------------------------------------------
+     STROKE
+  ---------------------------------------------------------- */
+
+  --stroke-card:    1px solid var(--color-white);   /* 뉴스 카드 기본 */
+  --stroke-btn:     1px solid var(--color-black);   /* Outlined 버튼 */
+  --stroke-btn-wh:  1px solid var(--color-white);   /* Outlined White 버튼 */
+
+}

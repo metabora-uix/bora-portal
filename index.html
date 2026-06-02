@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BORA Portal</title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-jp.min.css"
+  />
+  <!-- Adobe Fonts — Area Variable -->
+  <link rel="stylesheet" href="https://use.typekit.net/dli8ioi.css" />
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+    ============================================================ */
+    :root {
+      --color-white:       #FFFFFF;
+      --color-black:       #13131A;
+      --color-gray-400:    #767680;
+      --color-blue-brand:  #4545C4;
+      --color-blue-accent: #5959FF;
+      --color-purple-soft: #94A9F2;
+
+      /* TODO: fill_YLKIA6 Figma 원본값 미파싱 — 추정값 사용 */
+      --color-border-card: rgba(255, 255, 255, 0.12);
+
+      --font-display: 'area-variable', system-ui, sans-serif;
+      --font-body:    'Pretendard JP Variable', 'Pretendard JP', system-ui, sans-serif;
+
+      --text-hero:      100px;
+      --text-title-28:   28px;
+      --text-title-22:   22px;
+      --text-body-18:    18px;
+      --text-body-16:    16px;
+      --text-caption-12: 12px;
+
+      --fw-regular:  400;
+      --fw-medium:   500;
+      --fw-semibold: 600;
+      --fw-bold:     700;
+
+      --lh-tight:  1.30;
+      --lh-normal: 1.40;
+
+      --layout-max:     1920px;
+      --layout-gutter:   288px;
+
+      --sp-gnb-v:            16px;
+      --sp-btn-group-gap:    12px;
+      --sp-bi-gap:            7px;
+      --spacing-section-gap: 60px;
+
+      --radius-btn-sm: 24px;
+      --radius-btn-lg: 28px;
+      --radius-28:     28px;
+      --radius-pill:  999px;
+
+      --hero-h:          704px;
+      --hero-content-y:  200px;
+      --hero-content-w: 1034px;  /* Figma 원본: (1920-1034)/2 = 443 → center */
+      --hero-body-mt:     40px;
+      --hero-body-maxw:  680px;
+      --btn-w:           160px;
+    }
+
+    /* ============================================================
+       RESET
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      font-family: var(--font-body);
+      background: var(--color-white);
+      color: var(--color-black);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ============================================================
+       HERO  (Figma node 3720:8048 — 1920×704px)
+    ============================================================ */
+    .hero {
+      position: relative;
+      width: 100%;
+      max-width: var(--layout-max);
+      /* height: var(--hero-h) 제거 — img 태그 비율로 자동 결정 */
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    /* 배경 이미지 — <img>로 교체 (3840×2216 → 1920×1108 at 100% width) */
+    .hero__bg {
+      display: block;
+      width: 100%;
+      height: auto;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* deco-cross-grid (node 3720:8069)
+       Figma: x:288, y:170 / SVG 원본: 116×394px */
+    .hero__deco-cross-grid {
+      position: absolute;
+      left: 288px;
+      top: 170px;
+      width: 116px;
+      height: auto;
+      z-index: 2;        /* 배경(img) 위, 텍스트(z:5)·GNB(z:10) 아래 */
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @media (max-width: 768px) {
+      .hero__deco-cross-grid { display: none; }
+    }
+
+    /* ── GNB ─────────────────────────────────────────────── */
+    .gnb {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--sp-gnb-v) var(--layout-gutter);
+    }
+
+    /* BORA BI 로고 */
+    .gnb__logo {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-bi-gap);
+      height: 30px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .gnb__btns {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-btn-group-gap);
+    }
+
+    /* ── Button ──────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--btn-w);
+      padding: 13px 20px;
+      border-radius: var(--radius-pill);   /* pill shape — 피그마 확인 */
+      font-family: var(--font-body);
+      font-size: var(--text-body-16);
+      font-weight: var(--fw-medium);
+      line-height: var(--lh-normal);
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: opacity 0.16s, transform 0.16s;
+    }
+    .btn:hover  { opacity: 0.72; }
+    .btn:active { transform: scale(0.97); }
+
+    .btn--outlined {
+      background: transparent;
+      border: 1px solid var(--color-black);
+      color: var(--color-black);
+    }
+    .btn--filled {
+      background: var(--color-black);
+      border: 1px solid var(--color-black);
+      color: var(--color-white);
+    }
+
+    /* ── Hero content — 중앙 정렬 (피그마 원본 복원) ────────
+       layout_ELCOOA: x:443, y:200, w:1034 → center in 1920 */
+    .hero__content {
+      position: absolute;
+      top: var(--hero-content-y);
+      left: 50%;
+      transform: translateX(-50%);
+      width: var(--hero-content-w);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      z-index: 5;
+    }
+
+    /* style_5IBEAJ: Area Variable SemiBold 100px / 130% */
+    .hero__headline {
+      font-family: var(--font-display);
+      font-size: var(--text-hero);
+      font-weight: var(--fw-semibold);
+      line-height: var(--lh-tight);
+      color: var(--color-black);
+      letter-spacing: -0.02em;
+      width: 100%;
+    }
+
+    /* Body/body-18-R: 18px / 140% / center */
+    .hero__sub {
+      margin-top: var(--hero-body-mt);
+      font-size: var(--text-body-18);
+      font-weight: var(--fw-regular);
+      line-height: var(--lh-normal);
+      color: var(--color-black);
+      max-width: var(--hero-body-maxw);
+      text-align: center;
+    }
+
+    /* ============================================================
+       SECTION 02 — DEEPS  (Figma node 3720:8206)
+    ============================================================ */
+
+    /* 섹션 래퍼 — 1920 max, gutter 288px */
+    .deeps {
+      width: 100%;
+      max-width: var(--layout-max);
+      margin: 0 auto;
+      padding: var(--spacing-section-gap) var(--layout-gutter);
+    }
+
+    /* 카드 — layout_O43Z0B: row, center, gap:60, padding:30 */
+    .deeps__card {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 60px;
+      padding: 30px;
+      background: var(--color-white);
+      border: 1px solid var(--color-border-card);
+      border-radius: var(--radius-28);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 좌측 키비주얼 — layout_VLJIJD: 540×530, radius:10, bg:#4545C4 */
+    .deeps__visual {
+      flex-shrink: 0;
+      width: 540px;
+      height: 530px;
+      border-radius: 10px;
+      background: var(--color-blue-brand);
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+    }
+
+    .deeps__visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* 우측 콘텐츠 — layout_8PYOO4: column, gap:91 */
+    .deeps__con {
+      display: flex;
+      flex-direction: column;
+      gap: 91px;
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* txt — layout_EYKBAY: column, gap:24 */
+    .deeps__txt {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* title-info — layout_3EYMYL: row, center, gap:10 */
+    .deeps__title-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* 8×8 rect — fill:#767680 */
+    .deeps__dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      flex-shrink: 0;
+      background: var(--color-gray-400);
+    }
+
+    /* "BORA DEEPS" — Title/title-22-M: 500, 22px, 140% */
+    .deeps__label {
+      font-family: var(--font-body);
+      font-size: var(--text-title-22);
+      font-weight: var(--fw-medium);
+      line-height: var(--lh-normal);
+      color: var(--color-gray-400);
+    }
+
+    /* Heading — style_PXJDMC: Area Variable SemiBold 48px / 130% */
+    .deeps__heading {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: var(--fw-semibold);
+      line-height: var(--lh-tight);
+      color: var(--color-black);
+      letter-spacing: -0.02em;
+    }
+
+    /* btns — layout_S83G7N: row, center, gap:12 */
+    .deeps__btns {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-btn-group-gap);
+    }
+
+    /* Button Size=56 — layout_9Y1FL5: pad:15.5px 20px, radius:28, w:200 */
+    .btn--lg {
+      width: 200px;
+      padding: 15.5px 20px;
+      border-radius: var(--radius-btn-lg);
+      font-size: var(--text-body-18);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1280px) {
+      .gnb  { padding: var(--sp-gnb-v) clamp(24px, 5vw, 288px); }
+      .hero__content {
+        width: min(var(--hero-content-w), 88vw);
+      }
+      .hero__headline { font-size: clamp(52px, 6.5vw, 100px); }
+    }
+
+    @media (max-width: 768px) {
+      .hero__bg { min-height: 100svh; object-fit: cover; object-position: center top; }
+
+      .gnb { padding: 14px 20px; }
+      .gnb__btns .btn--outlined { display: none; }
+      .gnb__btns .btn--filled {
+        width: auto;
+        padding: 9px 16px;
+        font-size: var(--text-caption-12);
+      }
+
+      .hero__content {
+        position: relative;
+        top: auto; left: auto;
+        transform: none;
+        width: 100%;
+        padding: 92px 24px 0;
+      }
+      .hero__headline {
+        font-size: clamp(36px, 10.5vw, 56px);
+        letter-spacing: -0.01em;
+      }
+      .hero__sub {
+        margin-top: 20px;
+        font-size: var(--text-body-16);
+        max-width: 100%;
+        word-break: keep-all;
+      }
+
+    }
+
+    @media (max-width: 390px) {
+      .hero__headline { font-size: clamp(32px, 9.5vw, 42px); }
+      .hero__sub      { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero" aria-label="Hero">
+
+    <!-- 배경 이미지 (3840×2216 → width:100% 비율 유지) -->
+    <img
+      class="hero__deco-cross-grid"
+      src="./assets/icons/deco-cross-grid.svg"
+      alt=""
+      aria-hidden="true"
+      draggable="false"
+    />
+    <img
+      class="hero__bg"
+      src="./assets/images/bg-hero.png"
+      alt=""
+      aria-hidden="true"
+      draggable="false"
+    />
+
+    <!-- GNB -->
+    <nav class="gnb" aria-label="Global Navigation">
+
+      <a href="/" class="gnb__logo" aria-label="BORA Portal">
+        <img
+          src="./assets/icons/logo.svg"
+          alt="BORA"
+          width="91"
+          height="30"
+          draggable="false"
+        />
+      </a>
+
+      <div class="gnb__btns">
+        <a href="#" class="btn btn--outlined">Token Swap</a>
+        <a href="#" class="btn btn--filled">BORA Archive</a>
+      </div>
+
+    </nav>
+
+    <!-- Hero content — 중앙 정렬 (피그마 원본: x:443, y:200, w:1034) -->
+    <div class="hero__content">
+      <h1 class="hero__headline">
+        Powering a Playable<br>Web3 Ecosystem
+      </h1>
+      <p class="hero__sub">
+        BORA will strengthen its identity as a Gamer Engagement Platform where partners
+        and gamers grow together beyond the boundaries of Web2 and Web3.
+      </p>
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+       SECTION 02 — DEEPS  (Figma node 3720:8206)
+       카드: 1344px, row, gap:60, padding:30, radius:16, border:1px
+  ============================================================ -->
+  <section class="deeps" aria-label="BORA DEEPS">
+    <div class="deeps__card">
+
+      <!-- 좌측 키비주얼 (540×530, bg:#4545C4, radius:10) -->
+      <div class="deeps__visual">
+        <img
+          src="./assets/images/img-deeps-keyvisual.png"
+          alt="BORA DEEPS keyvisual"
+          draggable="false"
+        />
+      </div>
+
+      <!-- 우측 콘텐츠 (column, gap:91) -->
+      <div class="deeps__con">
+
+        <div class="deeps__txt">
+          <!-- title-info: 8px rect + "BORA DEEPS" label -->
+          <div class="deeps__title-info">
+            <span class="deeps__dot" aria-hidden="true"></span>
+            <span class="deeps__label">BORA DEEPS</span>
+          </div>
+          <!-- style_PXJDMC: Area Variable SemiBold 48px / 130% -->
+          <h2 class="deeps__heading">
+            A reward ecosystem designed for user participation, powered by BORA.
+          </h2>
+        </div>
+
+        <!-- btns: row, gap:12, Size=56, width:200, radius:28 -->
+        <div class="deeps__btns">
+          <a href="#" class="btn btn--outlined btn--lg">DEEPS Service</a>
+          <a href="#" class="btn btn--outlined btn--lg">DEEPS Brand</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
