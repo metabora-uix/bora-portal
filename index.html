@@ -734,135 +734,89 @@
     .banner__btn:active { transform: scale(0.97); }
 
     /* ============================================================
-       SECTION 07 — FOOTER  (Figma node 4046:3653)
-       1920×470, bg: #13131A
+       SECTION 07 — FOOTER
     ============================================================ */
 
     .footer {
-      width: 100%;
-      background: #0D0D0D;
       position: relative;
-      overflow: hidden;
-      padding: 60px 0;
+      background: #0D0D0D;
+      padding: 80px 0 60px;
     }
 
-    /* inner: max 1344, column, space-between, min-h:470 */
-    .footer__inner {
-      max-width: var(--layout-content);
-      margin: 0 auto;
-      padding: 0 var(--layout-gutter);
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: stretch;
-    }
-
-    /* deco — layout_CNM3QI: left:288, top:40 / layout_JR5V99: right:288, top:40, 142×82 */
     .footer__deco-cross {
       position: absolute;
-      left: 288px;
+      left: 40px;
       top: 40px;
-      pointer-events: none;
-      user-select: none;
     }
 
     .footer__deco-grid {
       position: absolute;
       right: 0;
       top: 0;
-      pointer-events: none;
-      user-select: none;
     }
 
-    /* contact group: layout_67KIK0: column, gap:24, w:285 */
-    .footer__contact {
+    .footer__inner {
+      max-width: 1344px;
+      margin: 0 auto;
+      padding: 0 40px;
       display: flex;
-      flex-direction: column;
-      gap: 24px;
-      align-items: flex-start;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: stretch;
+      height: 100%;
     }
 
-    /* "How can we help you?" — Title/title-28-M: 500, 28px, 140%, white */
-    .footer__contact-title {
-      font-family: var(--font-body);
-      font-size: var(--text-title-28);
-      font-weight: var(--fw-medium);
-      line-height: var(--lh-normal);
-      color: var(--color-white);
-    }
-
-    /* Button Size=48: pad:13px 20px, radius:24, 1px white, body-16-M, gap:6 */
-    .footer__contact-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 12px 24px;
-      border-radius: 999px;
-      border: 1px solid var(--color-white);
-      background: transparent;
-      font-family: var(--font-body);
-      font-size: var(--text-body-16);
-      font-weight: var(--fw-medium);
-      line-height: var(--lh-normal);
-      color: var(--color-white);
-      text-decoration: none;
-      white-space: nowrap;
-      transition: opacity 0.16s, transform 0.16s;
-    }
-    .footer__contact-btn:hover  { opacity: 0.72; }
-    .footer__contact-btn:active { transform: scale(0.97); }
-
-    /* 좌측 컬럼: contact(상단) + brand(하단), column space-between */
     .footer__left {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      align-items: flex-start;
+      gap: 80px;
     }
 
-    /* logo + copyright 묶음 */
+    .footer__contact-title {
+      color: #ffffff;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .footer__contact-btn {
+      display: inline-flex;
+      align-items: center;
+      color: #ffffff;
+      border: 1px solid #ffffff;
+      border-radius: 999px;
+      padding: 12px 24px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
     .footer__brand {
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
-    /* logo: layout_BT50FN 122.67×40 — white via filter */
     .footer__logo {
-      width: 123px;
-      height: 40px;
-      display: block;
-      filter: brightness(0) invert(1);
+      height: 32px;
+      width: auto;
     }
 
-    /* Body/B-12-R: 400, 12px, 130%, #90909A */
     .footer__copyright {
-      font-family: var(--font-body);
-      font-size: var(--text-caption-12);
-      font-weight: var(--fw-regular);
-      line-height: 1.30;
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(255,255,255,0.5);
+      font-size: 12px;
+      margin: 0;
     }
 
-    /* SNS row: gap:16, 우측 정렬, 하단 고정 */
     .footer__sns {
       display: flex;
-      align-items: center;
+      flex-direction: row;
+      align-items: flex-end;
       gap: 16px;
-      align-self: flex-end;
     }
 
-    .footer__sns-link {
-      display: block;
-      line-height: 0;
-      transition: opacity 0.16s;
-    }
-    .footer__sns-link:hover { opacity: 0.72; }
-
-    .footer__sns-icon {
-      width: 40px;
-      height: 40px;
-      display: block;
+    .footer__sns-link img {
+      width: 32px;
+      height: 32px;
     }
 
     /* ============================================================
@@ -928,9 +882,9 @@
 
       .footer__deco-cross { left: 24px; }
       .footer__deco-grid  { right: 24px; width: 80px; height: auto; }
-      .footer__inner { min-height: auto; padding: 60px 24px 40px; flex-direction: column; gap: 48px; }
-      .footer__left { justify-content: flex-start; gap: 32px; }
-      .footer__sns  { align-self: flex-start; }
+      .footer__inner { flex-direction: column; gap: 48px; padding: 0 24px; }
+      .footer__left { gap: 40px; }
+      .footer__sns { align-items: flex-start; }
 
     }
 
