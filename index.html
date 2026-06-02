@@ -22,8 +22,8 @@
       --color-blue-accent: #5959FF;
       --color-purple-soft: #94A9F2;
 
-      /* TODO: fill_YLKIA6 Figma 원본값 미파싱 — 추정값 사용 */
-      --color-border-card: rgba(255, 255, 255, 0.12);
+      --color-border-card: #90909A;    /* 뉴스 카드 테두리 — Figma fill_VJZI0X (이전 추정값 수정) */
+      --radius-card:       16px;
 
       --font-display: 'area-variable', system-ui, sans-serif;
       --font-body:    'Pretendard JP Variable', 'Pretendard JP', system-ui, sans-serif;
@@ -490,6 +490,155 @@
     }
 
     /* ============================================================
+       SECTION 05 — NEWS  (Figma node 4098:3558)
+       1344px 내부, 흰 배경 / bg 이미지 추후 적용
+    ============================================================ */
+
+    .news {
+      width: 100%;
+      background: var(--color-white);
+      padding: 120px var(--layout-gutter);
+    }
+
+    /* layout_BCS0FU: column, center, gap:64, width:1344 */
+    .news__inner {
+      max-width: var(--layout-content);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 64px;
+    }
+
+    /* layout_0KSCZ5: column, center, gap:16, w:711 */
+    .news__txt {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      width: 711px;
+      text-align: center;
+    }
+
+    /* layout_HCIEAV: row, center, gap:10 */
+    .news__title-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* 8×8 rect — fill_COAGQ4: #767680 */
+    .news__dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      flex-shrink: 0;
+      background: var(--color-gray-400);
+    }
+
+    /* "News" — Title/title-22-M: 500, 22px, 140%, #767680 */
+    .news__label {
+      font-family: var(--font-body);
+      font-size: var(--text-title-22);
+      font-weight: var(--fw-medium);
+      line-height: var(--lh-normal);
+      color: var(--color-gray-400);
+    }
+
+    /* style_ZMI0S0: Area Variable SemiBold 56px / 110% / center / #13131A */
+    .news__heading {
+      font-family: var(--font-display);
+      font-size: 56px;
+      font-weight: var(--fw-semibold);
+      line-height: 1.10;
+      color: var(--color-black);
+      letter-spacing: -0.02em;
+    }
+
+    /* layout_VJIC7A: row, stretch, gap:24, fill */
+    .news__cards {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      gap: 24px;
+      width: 100%;
+    }
+
+    /* layout_RDN2CY: column, stretch, fill, h:470, bg:white, border:1px #90909A, radius:16 */
+    .news__card {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      height: 470px;
+      background: var(--color-white);
+      border: 1px solid var(--color-border-card);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      text-decoration: none;
+      transition: opacity 0.16s;
+    }
+    .news__card:hover { opacity: 0.80; }
+
+    /* layout_WUFPWC: fill-w, h:222, placeholder */
+    .news__card-thumb {
+      width: 100%;
+      height: 222px;
+      flex-shrink: 0;
+      background: #F5F5F8;
+      overflow: hidden;
+    }
+
+    .news__card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* layout_8C7UKF: column, space-between, stretch, pad:30 30 24, fill */
+    .news__card-con {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: stretch;
+      flex: 1;
+      padding: 30px 30px 24px;
+    }
+
+    /* Title/title-28-M: 500, 28px, 140%, #13131A */
+    .news__card-title {
+      font-family: var(--font-body);
+      font-size: var(--text-title-28);
+      font-weight: var(--fw-medium);
+      line-height: var(--lh-normal);
+      color: var(--color-black);
+    }
+
+    /* layout_LK1HGX: row, space-between, center, stretch */
+    .news__card-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Body/body-16-M: 500, 16px, 140%, #767680 */
+    .news__card-date {
+      font-family: var(--font-body);
+      font-size: var(--text-body-16);
+      font-weight: var(--fw-medium);
+      line-height: var(--lh-normal);
+      color: var(--color-gray-400);
+    }
+
+    /* layout_SGRZMV: 32×32 */
+    .news__card-icon {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      display: block;
+    }
+
+    /* ============================================================
        RESPONSIVE
     ============================================================ */
     @media (max-width: 1280px) {
@@ -498,6 +647,9 @@
         width: min(var(--hero-content-w), 88vw);
       }
       .hero__headline { font-size: clamp(52px, 6.5vw, 100px); }
+
+      .news { padding: 80px clamp(24px, 5vw, 288px); }
+      .news__txt { width: min(711px, 100%); }
     }
 
     @media (max-width: 768px) {
@@ -527,6 +679,19 @@
         word-break: keep-all;
       }
 
+      .news { padding: 80px 24px; }
+      .news__txt { width: 100%; }
+      .news__heading { font-size: clamp(36px, 9vw, 56px); }
+      .news__cards { flex-direction: column; align-items: stretch; }
+      .news__card { height: auto; }
+      .news__card-thumb { height: 200px; }
+
+    }
+
+    @media (max-width: 390px) {
+      .hero__headline { font-size: clamp(32px, 9.5vw, 42px); }
+      .hero__sub      { font-size: 14px; }
+      .news__heading  { font-size: clamp(32px, 9vw, 42px); }
     }
 
     @media (max-width: 390px) {
@@ -695,6 +860,71 @@
       />
     </div>
 
+  </section>
+
+  <!-- ============================================================
+       SECTION 05 — NEWS  (Figma node 4098:3558)
+       1344px 내부, 흰 배경 / bg 이미지 추후 적용
+  ============================================================ -->
+  <section class="news" aria-label="News">
+    <div class="news__inner">
+
+      <!-- txt: column, center, gap:16, w:711 -->
+      <div class="news__txt">
+        <div class="news__title-info">
+          <span class="news__dot" aria-hidden="true"></span>
+          <span class="news__label">News</span>
+        </div>
+        <!-- style_ZMI0S0: Area Variable SemiBold 56px / 110% -->
+        <h2 class="news__heading">Stay ahead of what's next</h2>
+      </div>
+
+      <!-- cards: row, gap:24, stretch — 3개 균등 분할 -->
+      <div class="news__cards">
+
+        <a href="#" class="news__card">
+          <!-- layout_8C7UKF: column, space-between, pad:30 30 24 -->
+          <div class="news__card-thumb">
+            <img src="./assets/images/img-news-card-01.png" alt="BORA News 1" draggable="false" />
+          </div>
+          <div class="news__card-con">
+            <h3 class="news__card-title">BORA's New Leap: Evolving into a Gamer Engagement Platform</h3>
+            <div class="news__card-info">
+              <span class="news__card-date">5 May, 2026</span>
+              <img class="news__card-icon" src="./assets/icons/ic-sns-medium.svg" alt="Read on Medium" width="32" height="32" draggable="false" />
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="news__card">
+          <div class="news__card-thumb">
+            <img src="./assets/images/img-news-card-02.png" alt="BORA News 2" draggable="false" />
+          </div>
+          <div class="news__card-con">
+            <h3 class="news__card-title">BORA's New Leap: Evolving into a Gamer Engagement Platform</h3>
+            <div class="news__card-info">
+              <span class="news__card-date">5 May, 2026</span>
+              <img class="news__card-icon" src="./assets/icons/ic-sns-medium.svg" alt="Read on Medium" width="32" height="32" draggable="false" />
+            </div>
+          </div>
+        </a>
+
+        <a href="#" class="news__card">
+          <div class="news__card-thumb">
+            <img src="./assets/images/img-news-card-03.png" alt="BORA News 3" draggable="false" />
+          </div>
+          <div class="news__card-con">
+            <h3 class="news__card-title">BORA's New Leap: Evolving into a Gamer Engagement Platform</h3>
+            <div class="news__card-info">
+              <span class="news__card-date">5 May, 2026</span>
+              <img class="news__card-icon" src="./assets/icons/ic-sns-medium.svg" alt="Read on Medium" width="32" height="32" draggable="false" />
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
   </section>
 
 </body>
