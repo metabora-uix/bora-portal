@@ -398,6 +398,98 @@
     }
 
     /* ============================================================
+       SECTION 04 — BLOCKCHAIN  (Figma node 3720:8601)
+       전체: 1920×1260, 배경: #13131A (--color-black)
+    ============================================================ */
+
+    /* 섹션 래퍼 */
+    .blockchain {
+      width: 100%;
+      background: var(--color-black);
+      padding-top: 120px;   /* title y:120 기준 */
+    }
+
+    /* 헤더 영역 — 두 컬럼: title(710px) + gap(158px) + sub(476px) = 1344px */
+    .blockchain__header {
+      max-width: var(--layout-content);
+      margin: 0 auto;
+      padding: 0 0;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 158px;
+    }
+
+    /* 좌측 title 영역 — layout_EYBS0B: column, gap:16, w:710 */
+    .blockchain__title-area {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex-shrink: 0;
+      width: 710px;
+    }
+
+    /* 레이블 행 — layout_HJ3I7C: row, center, gap:10 */
+    .blockchain__label-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* 8×8 rect — fill_HOH9SY: #ABAAB4 */
+    .blockchain__dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      flex-shrink: 0;
+      background: #ABAAB4;
+    }
+
+    /* "BORA Blockchain" — Title/title-22-M: 500, 22px, 140%, #ABAAB4 */
+    .blockchain__label {
+      font-family: var(--font-body);
+      font-size: var(--text-title-22);
+      font-weight: var(--fw-medium);
+      line-height: var(--lh-normal);
+      color: #ABAAB4;
+    }
+
+    /* 헤딩 — style_H31CQM: Area Variable SemiBold 48px / 130% / white / left */
+    .blockchain__heading {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: var(--fw-semibold);
+      line-height: var(--lh-tight);
+      color: var(--color-white);
+      letter-spacing: -0.02em;
+    }
+
+    /* 우측 서브 텍스트 — layout_IA6QXO: x:1156, y:174 → sub가 title 상단보다 54px 아래
+       Body/body-16-R: 400, 16px, 140%, #767680 */
+    .blockchain__sub {
+      flex: 1;
+      max-width: 476px;
+      padding-top: 54px;
+      font-family: var(--font-body);
+      font-size: var(--text-body-16);
+      font-weight: var(--fw-regular);
+      line-height: var(--lh-normal);
+      color: var(--color-gray-400);
+    }
+
+    /* 하단 비주얼 — layout_DH2JK8: y:363, 1915px wide */
+    .blockchain__visual {
+      width: 100%;
+      margin-top: 60px;
+    }
+
+    .blockchain__visual img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ============================================================
        RESPONSIVE
     ============================================================ */
     @media (max-width: 1280px) {
@@ -561,6 +653,48 @@
       </div>
 
     </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 04 — BLOCKCHAIN  (Figma node 3720:8601)
+       1920×1260, 배경: #13131A
+  ============================================================ -->
+  <section class="blockchain" aria-label="BORA Blockchain">
+
+    <!-- 헤더: 좌측 타이틀(710px) + 우측 서브텍스트(476px), 총 1344px -->
+    <div class="blockchain__header">
+
+      <!-- 좌측: 레이블 + 헤딩 (layout_EYBS0B: column, gap:16) -->
+      <div class="blockchain__title-area">
+        <!-- title-info: row, gap:10 — fill_HOH9SY #ABAAB4 -->
+        <div class="blockchain__label-row">
+          <span class="blockchain__dot" aria-hidden="true"></span>
+          <span class="blockchain__label">BORA Blockchain</span>
+        </div>
+        <!-- style_H31CQM: Area Variable SemiBold 48px / 130% / white / left -->
+        <h2 class="blockchain__heading">
+          Kaia and BORA unify rewards<br>across Web2 and Web3.
+        </h2>
+      </div>
+
+      <!-- 우측: 서브 설명 (layout_IA6QXO: x:1156, y:174, body-16-R, #767680) -->
+      <p class="blockchain__sub">
+        Through Kaia's high-performance infrastructure and BORA's ecosystem-driven
+        token utility, users can experience integrated rewards, asset interoperability,
+        and sustainable digital economies across both Web2 and Web3 environments.
+      </p>
+
+    </div>
+
+    <!-- 하단 비주얼 (layout_DH2JK8: y:363, width ~1920) -->
+    <div class="blockchain__visual">
+      <img
+        src="./assets/images/img-blockchain-visual.png"
+        alt="BORA Blockchain visual"
+        draggable="false"
+      />
+    </div>
+
   </section>
 
 </body>
