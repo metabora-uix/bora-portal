@@ -896,6 +896,37 @@
       transform: translateY(0);
     }
 
+    /* games / blockchain / news scroll animations */
+    .games__inner {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+    .games__inner.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .blockchain {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+    .blockchain.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .news__card {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+    .news__card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* ============================================================
        RESPONSIVE
     ============================================================ */
@@ -1300,6 +1331,54 @@
         { threshold: 0.15 }
       );
       observer.observe(deepsCard);
+    }
+
+    // Games section
+    const gamesInner = document.querySelector('.games__inner');
+    if (gamesInner) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            gamesInner.classList.add('is-visible');
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.15 }
+      );
+      observer.observe(gamesInner);
+    }
+
+    // Blockchain section
+    const blockchain = document.querySelector('.blockchain');
+    if (blockchain) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            blockchain.classList.add('is-visible');
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(blockchain);
+    }
+
+    // News cards — 0.1s 간격 순차 등장
+    const newsSection = document.querySelector('.news');
+    if (newsSection) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            document.querySelectorAll('.news__card').forEach((card, i) => {
+              card.style.transitionDelay = `${i * 0.1}s`;
+              card.classList.add('is-visible');
+            });
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(newsSection);
     }
   </script>
 </body>
