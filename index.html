@@ -1363,23 +1363,21 @@
       observer.observe(blockchain);
     }
 
-    // News cards — 0.1s 간격 순차 등장
-    const newsSection = document.querySelector('.news');
-    if (newsSection) {
-      const observer = new IntersectionObserver(
+    // News cards — 카드별 개별 IntersectionObserver (delay: 0s / 0.15s / 0.3s)
+    const newsCardDelays = [0, 0.15, 0.3];
+    document.querySelectorAll('.news__card').forEach((card, i) => {
+      const obs = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            document.querySelectorAll('.news__card').forEach((card, i) => {
-              card.style.transitionDelay = `${i * 0.15}s`;
-              card.classList.add('is-visible');
-            });
-            observer.disconnect();
+            card.style.transitionDelay = `${newsCardDelays[i]}s`;
+            card.classList.add('is-visible');
+            obs.disconnect();
           }
         },
         { threshold: 0.1 }
       );
-      observer.observe(newsSection);
-    }
+      obs.observe(card);
+    });
   </script>
 </body>
 </html>
