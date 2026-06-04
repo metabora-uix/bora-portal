@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BORA Archive</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-jp.min.css" />
+  <link rel="stylesheet" href="https://use.typekit.net/dli8ioi.css" />
+  <style>
+    /* ============================================================
+       TOKENS
+    ============================================================ */
+    :root {
+      --color-white:       #FFFFFF;
+      --color-black:       #13131A;
+      --color-gray-400:    #767680;
+      --color-border-light: #E9E8EE;
+      --color-border-card:  #C7C5D0;
+      --color-bg-card:      #F5F5F8;
+
+      --font-display: 'area-variable', system-ui, sans-serif;
+      --font-body:    'Pretendard JP Variable', 'Pretendard JP', system-ui, sans-serif;
+      --font-mono:    'Code Saver', 'Courier New', monospace;
+
+      --layout-gutter:  288px;
+      --layout-content: 1344px;
+      --radius-pill: 999px;
+    }
+
+    /* ============================================================
+       RESET
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%;
+      font-family: var(--font-body);
+      background: var(--color-white);
+      color: var(--color-black);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ============================================================
+       GNB
+    ============================================================ */
+    .gnb {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px var(--layout-gutter);
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+    .gnb__logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 30px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .gnb__btns {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 160px;
+      padding: 13px 20px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.4;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: opacity 0.16s, transform 0.16s;
+    }
+    .btn:hover  { opacity: 0.72; }
+    .btn:active { transform: scale(0.97); }
+    .btn--outlined { background: transparent; border: 1px solid var(--color-black); color: var(--color-black); }
+    .btn--filled   { background: var(--color-black); border: 1px solid var(--color-black); color: var(--color-white); }
+
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .archive-main { max-width: 1920px; margin: 0 auto; }
+
+    .archive-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 100px;
+      padding: 64px 48px 120px;
+    }
+
+    /* ============================================================
+       SECTION WRAPPER
+    ============================================================ */
+    .arc-section {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      width: var(--layout-content);
+    }
+
+    .arc-section-heading {
+      font-family: var(--font-display);
+      font-size: 40px;
+      font-weight: 600;
+      line-height: 130%;
+      color: var(--color-black);
+      letter-spacing: -0.02em;
+    }
+
+    /* ============================================================
+       CARD GROUP
+    ============================================================ */
+    .arc-group {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+    .arc-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--color-border-card);
+      margin: 16px 0;
+    }
+
+    /* ============================================================
+       SECTION CARD
+    ============================================================ */
+    .arc-card {
+      width: 100%;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border-card);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    /* Card header */
+    .arc-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 24px;
+      min-height: 60px;
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-border-card);
+    }
+    .arc-card-title {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 140%;
+      color: var(--color-black);
+    }
+    .arc-card-title--gray { color: var(--color-gray-400); }
+
+    /* Plain arrow button */
+    .arc-plain-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 2px;
+      background: none;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-gray-400);
+      cursor: pointer;
+      text-decoration: none;
+      margin-left: auto;
+      transition: opacity 0.16s;
+    }
+    .arc-plain-btn:hover { opacity: 0.72; }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0 8px;
+      height: 24px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1;
+    }
+    .badge--ended { background: rgba(94,94,103,0.12); border: 1px solid rgba(94,94,103,0.25); color: var(--color-gray-400); }
+    .badge--live  { background: rgba(0,168,158,0.10); border: 1px solid rgba(0,168,158,0.20); color: #00A89E; }
+
+    /* ============================================================
+       STAT CARDS
+    ============================================================ */
+    .arc-stat-row {
+      display: flex;
+      gap: 12px;
+      padding: 20px 24px;
+    }
+    .arc-stat-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      flex: 1;
+      padding: 20px;
+      border-radius: 4px;
+      min-height: 90px;
+    }
+    .arc-stat-card--c1 { background: rgba(171,214,233,0.12); border: 1px solid rgba(171,214,233,0.18); }
+    .arc-stat-card--c2 { background: rgba(166,192,241,0.08); }
+    .arc-stat-card--c3 { background: rgba(152,162,238,0.08); }
+    .arc-stat-card--c4 { background: rgba(177,148,243,0.08); }
+    .arc-stat-card--white { background: var(--color-white); border: 1px solid var(--color-border-light); }
+
+    .arc-stat-value {
+      font-family: var(--font-mono);
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1;
+      color: var(--color-black);
+    }
+    .arc-stat-label {
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 140%;
+      color: #5E5E67;
+    }
+
+    /* ============================================================
+       EXCHANGE LINKS
+    ============================================================ */
+    .arc-exchanges-bar {
+      display: flex;
+      align-items: center;
+      padding: 12px 24px;
+      border-top: 1px solid var(--color-border-card);
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--color-gray-400);
+    }
+    .arc-exchange-links {
+      display: flex;
+      gap: 12px;
+      padding: 0 24px 20px;
+      flex-wrap: wrap;
+    }
+    .arc-exchange-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 12px;
+      width: 110px;
+      background: var(--color-white);
+      border: 1px solid var(--color-border-light);
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--color-gray-400);
+      transition: opacity 0.16s;
+    }
+    .arc-exchange-link:hover { opacity: 0.72; }
+    .arc-exchange-logo {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      object-fit: cover;
+      background: #f0f0f4;
+    }
+
+    /* ============================================================
+       CONTRACT ADDRESSES
+    ============================================================ */
+    .arc-contracts {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 20px 24px;
+      border-top: 1px solid var(--color-border-card);
+    }
+    .arc-contract-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .arc-contract-label {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 140%;
+      color: var(--color-gray-400);
+    }
+    .arc-contract-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      max-width: 643px;
+      height: 40px;
+      background: var(--color-white);
+      border: 1px solid var(--color-border-light);
+      border-radius: 4px;
+    }
+    .arc-contract-addr {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 140%;
+      color: #90909A;
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .arc-icon-sm {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      opacity: 0.5;
+      cursor: pointer;
+      transition: opacity 0.16s;
+    }
+    .arc-icon-sm:hover { opacity: 1; }
+
+    /* ============================================================
+       TOKEN HISTORY BODY
+    ============================================================ */
+    .arc-card-body-wrap {
+      padding: 20px 24px 0;
+    }
+    .arc-card-body {
+      padding: 20px;
+      background: var(--color-white);
+      border: 1px solid var(--color-border-light);
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 140%;
+      color: var(--color-gray-400);
+    }
+
+    /* ============================================================
+       BORAChain INFO
+    ============================================================ */
+    .arc-card-info {
+      padding: 20px 24px;
+    }
+    .arc-card-desc {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 140%;
+      color: var(--color-black);
+      margin-bottom: 12px;
+    }
+    .arc-card-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 140%;
+      color: var(--color-gray-400);
+      margin-bottom: 6px;
+    }
+    .arc-card-list-item:last-child { margin-bottom: 0; }
+    .arc-card-list-key {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       HISTORY TIMELINE
+    ============================================================ */
+    .arc-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+
+    /* Year item */
+    .arc-year-item {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border-card);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .arc-year-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 20px 24px;
+      height: 72px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .arc-year-header svg { flex-shrink: 0; transition: transform 0.22s ease; }
+
+    .arc-year-label {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 36px;
+      letter-spacing: -0.03em;
+      color: var(--color-black);
+    }
+
+    /* Open state */
+    .arc-year-item.is-open {
+      background: var(--color-white);
+    }
+    .arc-year-item.is-open > .arc-year-header {
+      background: var(--color-bg-card);
+    }
+    .arc-year-item.is-open > .arc-year-header svg {
+      transform: rotate(180deg);
+    }
+
+    .arc-year-entries { display: none; }
+    .arc-year-item.is-open .arc-year-entries { display: block; }
+
+    /* Timeline entries */
+    .arc-entry {
+      display: flex;
+      gap: 48px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--color-border-light);
+    }
+    .arc-entry:last-of-type { border-bottom: none; }
+
+    .arc-entry-date {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 140%;
+      color: var(--color-gray-400);
+      flex-shrink: 0;
+      width: 72px;
+      padding-top: 2px;
+    }
+
+    .arc-entry-items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+    }
+
+    .arc-entry-item {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--color-border-light);
+    }
+    .arc-entry-items > .arc-entry-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .arc-entry-title {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 140%;
+      color: var(--color-black);
+    }
+
+    /* Tags */
+    .arc-tags {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+    .arc-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 16.5px;
+      letter-spacing: 0.0059em;
+      white-space: nowrap;
+    }
+    .arc-tag--pink   { background: rgba(170,30,155,0.07);  border: 1px solid rgba(170,30,155,0.28); color: #8B1577; }
+    .arc-tag--gray   { background: rgba(94,94,103,0.08);   border: 1px solid rgba(94,94,103,0.26);  color: #5E5E67; }
+    .arc-tag--blue   { background: rgba(38,78,200,0.07);   border: 1px solid rgba(38,78,200,0.28);  color: #24469E; }
+    .arc-tag--green  { background: rgba(10,108,88,0.07);   border: 1px solid rgba(10,108,88,0.28);  color: #085F4E; }
+    .arc-tag--orange { background: rgba(148,88,0,0.07);    border: 1px solid rgba(148,88,0,0.28);   color: #784800; }
+
+    /* More button row */
+    .arc-more-row {
+      display: flex;
+      justify-content: center;
+      padding: 12px 24px;
+      border-top: 1px solid var(--color-border-light);
+    }
+    .arc-more-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      border: none;
+      background: none;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-gray-400);
+      cursor: pointer;
+      transition: opacity 0.16s;
+    }
+    .arc-more-btn:hover { opacity: 0.72; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1400px) {
+      .gnb { padding: 16px clamp(24px, 5vw, 288px); }
+      .archive-container { padding: 48px 24px 80px; }
+      .arc-section { width: min(var(--layout-content), 100%); }
+      .arc-stat-row { flex-wrap: wrap; }
+      .arc-contract-row { max-width: 100%; }
+    }
+    @media (max-width: 768px) {
+      .gnb { padding: 14px 20px; }
+      .gnb__btns .btn--outlined { display: none; }
+      .gnb__btns .btn--filled { width: auto; padding: 9px 16px; font-size: 12px; }
+      .archive-container { padding: 32px 16px 80px; gap: 60px; }
+      .arc-section-heading { font-size: 28px; }
+      .arc-entry { flex-direction: column; gap: 12px; }
+      .arc-entry-date { width: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- GNB -->
+  <nav class="gnb" aria-label="Global Navigation">
+    <a href="./index.html" class="gnb__logo" aria-label="BORA Portal">
+      <img src="./assets/icons/logo.svg" alt="BORA" width="91" height="30" draggable="false" />
+    </a>
+    <div class="gnb__btns">
+      <a href="#" class="btn btn--outlined">Token Swap</a>
+      <a href="./archive.html" class="btn btn--filled">BORA Archive</a>
+    </div>
+  </nav>
+
+  <main class="archive-main">
+    <div class="archive-container">
+
+      <!-- =====================================================
+           SECTION 1 — Project Records & Status
+      ====================================================== -->
+      <section class="arc-section" aria-label="Project Records & Status">
+        <h2 class="arc-section-heading">Project Records & Status</h2>
+
+        <!-- Group 1 -->
+        <div class="arc-group">
+
+          <!-- Card: Token Overview -->
+          <div class="arc-card">
+            <div class="arc-card-header">
+              <span class="arc-card-title">Token Overview</span>
+            </div>
+
+            <!-- Stat cards -->
+            <div class="arc-stat-row">
+              <div class="arc-stat-card arc-stat-card--c1">
+                <div class="arc-stat-value">100.0M</div>
+                <div class="arc-stat-label">Total Supply</div>
+              </div>
+              <div class="arc-stat-card arc-stat-card--c2">
+                <div class="arc-stat-value">1.2B</div>
+                <div class="arc-stat-label">Circulating</div>
+              </div>
+              <div class="arc-stat-card arc-stat-card--c3">
+                <div class="arc-stat-value">$0.0899</div>
+                <div class="arc-stat-label">Token Price</div>
+              </div>
+              <div class="arc-stat-card arc-stat-card--c4">
+                <div class="arc-stat-value">6</div>
+                <div class="arc-stat-label">Exchanges</div>
+              </div>
+            </div>
+
+            <!-- Exchange links -->
+            <div class="arc-exchanges-bar">Exchanges (6)</div>
+            <div class="arc-exchange-links">
+              <a href="#" class="arc-exchange-link">
+                <img class="arc-exchange-logo" src="./assets/images/img-exchange-upbit.png" alt="Upbit" />
+                <span>Upbit</span>
+              </a>
+              <a href="#" class="arc-exchange-link">
+                <img class="arc-exchange-logo" src="./assets/images/img-exchange-gate.png" alt="Gate" />
+                <span>Gate</span>
+              </a>
+              <a href="#" class="arc-exchange-link">
+                <img class="arc-exchange-logo" src="./assets/images/img-exchange-bithumb.png" alt="Bithumb" />
+                <span>Bithumb</span>
+              </a>
+              <a href="#" class="arc-exchange-link">
+                <img class="arc-exchange-logo" src="./assets/images/img-exchange-coinone.png" alt="Coinone" />
+                <span>Coinone</span>
+              </a>
+              <a href="#" class="arc-exchange-link">
+                <img class="arc-exchange-logo" src="./assets/images/img-exchange-zaif.png" alt="Zaif" />
+                <span>Zaif</span>
+              </a>
+              <a href="#" class="arc-exchange-link">
+                <img class="arc-exchange-logo" src="./assets/images/img-exchange-korbit.png" alt="Korbit" />
+                <span>Korbit</span>
+              </a>
+            </div>
+
+            <!-- Contract addresses -->
+            <div class="arc-contracts">
+              <div class="arc-contract-block">
+                <span class="arc-contract-label">Contract</span>
+                <div class="arc-contract-row">
+                  <span class="arc-contract-addr">0x02cbe46fb8a1f579254a9b485788f2d86cad51aa</span>
+                  <svg class="arc-icon-sm" viewBox="0 0 14 14" fill="none" aria-label="Copy"><rect x="4" y="4" width="8" height="8" rx="1" stroke="#767680" stroke-width="1.2"/><path d="M2 10V2h8" stroke="#767680" stroke-width="1.2" stroke-linecap="round"/></svg>
+                  <svg class="arc-icon-sm" viewBox="0 0 14 14" fill="none" aria-label="Open"><path d="M5.5 2H2v10h10V8.5M8 2h4v4M12 2L6.5 7.5" stroke="#767680" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+              <div class="arc-contract-block">
+                <span class="arc-contract-label">Burn Address</span>
+                <div class="arc-contract-row">
+                  <span class="arc-contract-addr">0x0000000000000000000000000000000000feefed</span>
+                  <svg class="arc-icon-sm" viewBox="0 0 14 14" fill="none" aria-label="Copy"><rect x="4" y="4" width="8" height="8" rx="1" stroke="#767680" stroke-width="1.2"/><path d="M2 10V2h8" stroke="#767680" stroke-width="1.2" stroke-linecap="round"/></svg>
+                  <svg class="arc-icon-sm" viewBox="0 0 14 14" fill="none" aria-label="Open"><path d="M5.5 2H2v10h10V8.5M8 2h4v4M12 2L6.5 7.5" stroke="#767680" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card: Token History -->
+          <div class="arc-card">
+            <div class="arc-card-header">
+              <span class="arc-card-title arc-card-title--gray">Token History</span>
+              <span class="badge badge--ended">ENDED</span>
+              <a href="#" class="arc-plain-btn">
+                Migration BORA
+                <svg width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M1 1l6 5.5L1 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+            <div class="arc-card-body-wrap">
+              <div class="arc-card-body">
+                The BORA token was initially issued on Ethereum in 2018 and later migrated to the Klaytn (now Kaia) mainnet in 2021.
+              </div>
+            </div>
+            <div class="arc-contracts">
+              <div class="arc-contract-block">
+                <span class="arc-contract-label">Contract</span>
+                <div class="arc-contract-row">
+                  <span class="arc-contract-addr">0x26fb86579e371c7AEdc461b2DdEF0A8628c93d3B</span>
+                  <svg class="arc-icon-sm" viewBox="0 0 14 14" fill="none" aria-label="Copy"><rect x="4" y="4" width="8" height="8" rx="1" stroke="#767680" stroke-width="1.2"/><path d="M2 10V2h8" stroke="#767680" stroke-width="1.2" stroke-linecap="round"/></svg>
+                  <svg class="arc-icon-sm" viewBox="0 0 14 14" fill="none" aria-label="Open"><path d="M5.5 2H2v10h10V8.5M8 2h4v4M12 2L6.5 7.5" stroke="#767680" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="arc-divider"></div>
+
+        <!-- Group 2 -->
+        <div class="arc-group">
+
+          <!-- Card: BORAChain -->
+          <div class="arc-card">
+            <div class="arc-card-header">
+              <span class="arc-card-title">BORAChain</span>
+              <a href="#" class="arc-plain-btn">
+                BORA Scope
+                <svg width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M1 1l6 5.5L1 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+            <div class="arc-card-info">
+              <p class="arc-card-desc">A Layer 2 chain built on the Kaia mainnet</p>
+              <div>
+                <div class="arc-card-list-item">
+                  <span class="arc-card-list-key"><span>•</span>&nbsp;<span>Since :</span></span>
+                  <span>Mar 19 2022 ~</span>
+                </div>
+                <div class="arc-card-list-item">
+                  <span class="arc-card-list-key"><span>•</span>&nbsp;<span>Features :</span></span>
+                  <span>BORA PORTAL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card: BORA DEEPS -->
+          <div class="arc-card">
+            <div class="arc-card-header">
+              <span class="arc-card-title">BORA DEEPS</span>
+              <span class="badge badge--live">LIVE</span>
+            </div>
+            <div class="arc-stat-row">
+              <div class="arc-stat-card arc-stat-card--white">
+                <div class="arc-stat-value">100.0M</div>
+                <div class="arc-stat-label">Ruby Supply</div>
+              </div>
+              <div class="arc-stat-card arc-stat-card--white">
+                <div class="arc-stat-value">1.2B</div>
+                <div class="arc-stat-label">Gold Circulation</div>
+              </div>
+              <div class="arc-stat-card arc-stat-card--white">
+                <div class="arc-stat-value">$0.0899</div>
+                <div class="arc-stat-label">Account Count</div>
+              </div>
+              <div class="arc-stat-card arc-stat-card--white">
+                <div class="arc-stat-value">6</div>
+                <div class="arc-stat-label">Reward Amount</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =====================================================
+           SECTION 2 — History & Archives
+      ====================================================== -->
+      <section class="arc-section" aria-label="History & Archives">
+        <h2 class="arc-section-heading">History &amp; Archives</h2>
+
+        <div class="arc-timeline">
+
+          <!-- 2026 -->
+          <div class="arc-year-item" data-year="2026">
+            <div class="arc-year-header">
+              <span class="arc-year-label">2026</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#767680" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="arc-year-entries"></div>
+          </div>
+
+          <!-- 2025 (expanded) -->
+          <div class="arc-year-item is-open" data-year="2025">
+            <div class="arc-year-header">
+              <span class="arc-year-label">2025</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#767680" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="arc-year-entries">
+
+              <!-- 2025.10 -->
+              <div class="arc-entry">
+                <span class="arc-entry-date">2025.10</span>
+                <div class="arc-entry-items">
+                  <div class="arc-entry-item">
+                    <p class="arc-entry-title">"Puzzle &amp; Guardians" Game Onboarding</p>
+                    <div class="arc-tags">
+                      <span class="arc-tag arc-tag--pink">Game</span>
+                      <span class="arc-tag arc-tag--gray">Onboarding</span>
+                      <span class="arc-tag arc-tag--gray">Partnership</span>
+                      <span class="arc-tag arc-tag--gray">Ecosystem</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2025.09 -->
+              <div class="arc-entry">
+                <span class="arc-entry-date">2025.09</span>
+                <div class="arc-entry-items">
+                  <div class="arc-entry-item">
+                    <p class="arc-entry-title">Token Burn</p>
+                    <div class="arc-tags">
+                      <span class="arc-tag arc-tag--blue">Tokenomics</span>
+                      <span class="arc-tag arc-tag--gray">$BORA 109,155.97</span>
+                      <span class="arc-tag arc-tag--gray">Burn Address</span>
+                      <span class="arc-tag arc-tag--gray">Supply Reduction</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2025.08 -->
+              <div class="arc-entry">
+                <span class="arc-entry-date">2025.08</span>
+                <div class="arc-entry-items">
+                  <div class="arc-entry-item">
+                    <p class="arc-entry-title">Engagement Platform "BORA DEEPS v1.0" Launch</p>
+                    <div class="arc-tags">
+                      <span class="arc-tag arc-tag--green">Tokenomics</span>
+                      <span class="arc-tag arc-tag--gray">Launch</span>
+                      <span class="arc-tag arc-tag--gray">Service Update</span>
+                      <span class="arc-tag arc-tag--gray">Ecosystem</span>
+                    </div>
+                  </div>
+                  <div class="arc-entry-item">
+                    <p class="arc-entry-title">Technical Collaboration with Kaia – CL &amp; GA Integration</p>
+                    <div class="arc-tags">
+                      <span class="arc-tag arc-tag--orange">Blockchain Infra</span>
+                      <span class="arc-tag arc-tag--gray">Technology</span>
+                      <span class="arc-tag arc-tag--gray">Infrastructure</span>
+                      <span class="arc-tag arc-tag--gray">Token Utility</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="arc-more-row">
+                <button class="arc-more-btn">
+                  +2 More
+                  <svg width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M1 1l6 5.5L1 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 2024 -->
+          <div class="arc-year-item" data-year="2024">
+            <div class="arc-year-header">
+              <span class="arc-year-label">2024</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#767680" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="arc-year-entries"></div>
+          </div>
+
+          <!-- 2023 -->
+          <div class="arc-year-item" data-year="2023">
+            <div class="arc-year-header">
+              <span class="arc-year-label">2023</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#767680" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="arc-year-entries"></div>
+          </div>
+
+          <!-- 2022 -->
+          <div class="arc-year-item" data-year="2022">
+            <div class="arc-year-header">
+              <span class="arc-year-label">2022</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#767680" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="arc-year-entries"></div>
+          </div>
+
+          <!-- 2021 -->
+          <div class="arc-year-item" data-year="2021">
+            <div class="arc-year-header">
+              <span class="arc-year-label">2021</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#767680" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="arc-year-entries"></div>
+          </div>
+
+          <!-- 2020 -->
+          <div class="arc-year-item" data-year="2020">
+            <div class="arc-year-header">
+              <span class="arc-year-label">2020</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#767680" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="arc-year-entries"></div>
+          </div>
+
+          <!-- 2019 -->
+          <div class="arc-year-item" data-year="2019">
+            <div class="arc-year-header">
+              <span class="arc-year-label">2019</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#767680" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="arc-year-entries"></div>
+          </div>
+
+          <!-- 2018 -->
+          <div class="arc-year-item" data-year="2018">
+            <div class="arc-year-header">
+              <span class="arc-year-label">2018</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#767680" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="arc-year-entries"></div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    // Year accordion toggle
+    document.querySelectorAll('.arc-year-item').forEach(item => {
+      item.querySelector('.arc-year-header').addEventListener('click', () => {
+        item.classList.toggle('is-open');
+      });
+    });
+  </script>
+
+</body>
+</html>
