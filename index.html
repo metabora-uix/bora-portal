@@ -793,12 +793,11 @@
       position: relative;
       background: #0D0D0D;
       height: 470px;
-      overflow: hidden;
     }
 
     .footer__deco-cross {
       position: absolute;
-      left: max(0px, calc((100% - 1344px) / 2));
+      left: 40px;
       top: 40px;
       width: auto;
       height: auto;
@@ -807,12 +806,13 @@
     .footer__deco-grid {
       position: absolute;
       right: 0;
-      top: 0;
+      top: 40px;
       width: auto;
       height: auto;
     }
 
     .footer__inner {
+      position: relative;
       max-width: 1344px;
       margin: 0 auto;
       padding: 40px 0;
@@ -845,6 +845,13 @@
     .footer__sns-link img {
       width: 40px;
       height: 40px;
+    }
+
+    .footer__contact {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 30px;
     }
 
     .footer__contact-title {
@@ -1301,12 +1308,12 @@
   ============================================================ -->
   <footer class="footer" aria-label="Site Footer">
 
-    <!-- deco: 좌상단 (x:288, y:40) -->
+    <!-- deco-cross: footer 기준 좌상단 (left:40, top:40) -->
     <img class="footer__deco-cross" src="./assets/icons/deco-footer-cross.svg" alt="" aria-hidden="true" draggable="false" />
-    <!-- deco: 우상단 (x:1490, y:40, 142×82) -->
-    <img class="footer__deco-grid" src="./assets/icons/deco-footer-grid.svg" alt="" aria-hidden="true" draggable="false" />
 
     <div class="footer__inner">
+      <!-- deco-grid: footer__inner 기준 우상단 (right:0, top:40) -->
+      <img class="footer__deco-grid" src="./assets/icons/deco-footer-grid.svg" alt="" aria-hidden="true" draggable="false" />
 
       <!-- 좌측: contact(상단) + brand(하단) -->
       <div class="footer__left">
