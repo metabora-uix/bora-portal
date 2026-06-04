@@ -874,22 +874,22 @@
 
     /* GNB: 위에서 fade in (0.3s) */
     .gnb {
-      animation: fadeInDown 0.3s ease-out both;
+      animation: fadeInDown 0.8s ease-out both;
     }
     /* Hero title: 아래→위 fade in (0.5s, delay 0.2s) */
     .hero__headline {
-      animation: fadeSlideUp 0.5s ease-out 0.2s both;
+      animation: fadeSlideUp 0.8s ease-out 0.2s both;
     }
     /* Hero sub: 아래→위 fade in (0.5s, delay 0.4s) */
     .hero__sub {
-      animation: fadeSlideUp 0.5s ease-out 0.4s both;
+      animation: fadeSlideUp 0.8s ease-out 0.4s both;
     }
 
     /* DEEPS card: 초기 숨김 → IntersectionObserver로 .is-visible 부여 */
     .deeps__card {
       opacity: 0;
       transform: translateY(30px);
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
     .deeps__card.is-visible {
       opacity: 1;
@@ -900,7 +900,7 @@
     .games__inner {
       opacity: 0;
       transform: translateY(30px);
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
     .games__inner.is-visible {
       opacity: 1;
@@ -910,7 +910,7 @@
     .blockchain {
       opacity: 0;
       transform: translateY(30px);
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
     .blockchain.is-visible {
       opacity: 1;
@@ -920,7 +920,7 @@
     .news__card {
       opacity: 0;
       transform: translateY(30px);
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
     .news__card.is-visible {
       opacity: 1;
@@ -1370,7 +1370,7 @@
         ([entry]) => {
           if (entry.isIntersecting) {
             document.querySelectorAll('.news__card').forEach((card, i) => {
-              card.style.transitionDelay = `${i * 0.1}s`;
+              card.style.transitionDelay = `${i * 0.15}s`;
               card.classList.add('is-visible');
             });
             observer.disconnect();
