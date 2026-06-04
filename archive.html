@@ -51,7 +51,6 @@
       align-items: center;
       padding: 16px var(--layout-gutter);
       background: var(--color-white);
-      border-bottom: 1px solid var(--color-border-light);
     }
     .gnb__logo {
       display: inline-flex;
@@ -97,7 +96,7 @@
       flex-direction: column;
       align-items: center;
       gap: 100px;
-      padding: 64px 48px 120px;
+      padding: 64px 48px 80px;
     }
 
     /* ============================================================
@@ -132,7 +131,6 @@
       width: 100%;
       height: 1px;
       background: var(--color-border-card);
-      margin: 16px 0;
     }
 
     /* ============================================================
@@ -222,6 +220,13 @@
     .arc-stat-card--c4 { background: rgba(177,148,243,0.08); }
     .arc-stat-card--white { background: var(--color-white); border: 1px solid var(--color-border-light); }
 
+    .arc-groups-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+      width: 100%;
+    }
+
     .arc-stat-value {
       font-family: var(--font-mono);
       font-size: 24px;
@@ -234,6 +239,16 @@
       font-weight: 400;
       line-height: 140%;
       color: #5E5E67;
+    }
+    .arc-card-desc {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 140%;
+      color: var(--color-black);
+    }
+    .arc-card-list-item {
+      font-size: 13px;
+      font-weight: 400;
     }
 
     /* ============================================================
@@ -315,6 +330,7 @@
       font-family: var(--font-mono);
       font-size: 13px;
       font-weight: 500;
+      font-style: normal;
       line-height: 140%;
       color: #90909A;
       flex: 1;
@@ -416,6 +432,7 @@
       line-height: 36px;
       letter-spacing: -0.03em;
       color: var(--color-black);
+      font-style: normal;
     }
 
     /* Open state */
@@ -439,12 +456,13 @@
       padding: 20px 24px;
       border-bottom: 1px solid var(--color-border-light);
     }
-    .arc-entry:last-of-type { border-bottom: none; }
+    /* all entries keep border-bottom; more-row follows last entry */
 
     .arc-entry-date {
       font-family: var(--font-mono);
       font-size: 14px;
       font-weight: 500;
+      font-style: normal;
       line-height: 140%;
       color: var(--color-gray-400);
       flex-shrink: 0;
@@ -463,12 +481,6 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--color-border-light);
-    }
-    .arc-entry-items > .arc-entry-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
     }
 
     .arc-entry-title {
@@ -508,7 +520,6 @@
       display: flex;
       justify-content: center;
       padding: 12px 24px;
-      border-top: 1px solid var(--color-border-light);
     }
     .arc-more-btn {
       display: inline-flex;
@@ -569,6 +580,7 @@
       <section class="arc-section" aria-label="Project Records & Status">
         <h2 class="arc-section-heading">Project Records & Status</h2>
 
+        <div class="arc-groups-wrap">
         <!-- Group 1 -->
         <div class="arc-group">
 
@@ -637,14 +649,6 @@
                   <svg class="arc-icon-sm" viewBox="0 0 14 14" fill="none" aria-label="Open"><path d="M5.5 2H2v10h10V8.5M8 2h4v4M12 2L6.5 7.5" stroke="#767680" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
               </div>
-              <div class="arc-contract-block">
-                <span class="arc-contract-label">Burn Address</span>
-                <div class="arc-contract-row">
-                  <span class="arc-contract-addr">0x0000000000000000000000000000000000feefed</span>
-                  <svg class="arc-icon-sm" viewBox="0 0 14 14" fill="none" aria-label="Copy"><rect x="4" y="4" width="8" height="8" rx="1" stroke="#767680" stroke-width="1.2"/><path d="M2 10V2h8" stroke="#767680" stroke-width="1.2" stroke-linecap="round"/></svg>
-                  <svg class="arc-icon-sm" viewBox="0 0 14 14" fill="none" aria-label="Open"><path d="M5.5 2H2v10h10V8.5M8 2h4v4M12 2L6.5 7.5" stroke="#767680" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -680,6 +684,7 @@
         <div class="arc-divider"></div>
 
         <!-- Group 2 -->
+
         <div class="arc-group">
 
           <!-- Card: BORAChain -->
@@ -733,6 +738,7 @@
           </div>
 
         </div>
+        </div><!-- /arc-groups-wrap -->
       </section>
 
       <!-- =====================================================
