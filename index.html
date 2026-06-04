@@ -341,6 +341,47 @@
       font-size: var(--text-body-18);
     }
 
+    /* ── DEEPS 버튼 호버: outlined → filled (opacity 오버라이드 포함) ── */
+    .deeps__btns .btn--outlined {
+      transition: background 0.24s ease, color 0.24s ease, border-color 0.24s ease, transform 0.16s;
+    }
+    .deeps__btns .btn--outlined:hover {
+      background: var(--color-black);
+      color: var(--color-white);
+      opacity: 1;
+    }
+
+    /* ── DEEPS 키비주얼 이미지 스택 ── */
+    .deeps__visual-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: opacity 0.45s ease;
+    }
+    .deeps__visual-img--service { opacity: 1; z-index: 1; }
+    .deeps__visual-img--brand   { opacity: 0; z-index: 2; }
+
+    /* DEEPS Brand 버튼 호버 시 brand 이미지로 crossfade */
+    .deeps__card:has(.btn--deeps-brand:hover) .deeps__visual-img--service { opacity: 0; }
+    .deeps__card:has(.btn--deeps-brand:hover) .deeps__visual-img--brand   { opacity: 1; }
+
+    /* ── DEEPS 헤딩 텍스트 전환 ── */
+    .deeps__heading {
+      display: grid;
+    }
+    .deeps__heading-service,
+    .deeps__heading-brand {
+      grid-area: 1 / 1;
+      transition: opacity 0.2s ease;
+    }
+    .deeps__heading-brand { opacity: 0; }
+    .deeps__card:has(.btn--deeps-brand:hover) .deeps__heading-service { opacity: 0; }
+    .deeps__card:has(.btn--deeps-brand:hover) .deeps__heading-brand   { opacity: 1; }
+
     /* ============================================================
        SECTION 03 — GAMES  (Figma node 4065:7154)
        전체: 1344×1015, 흰 배경 (bg bridge 추후 적용)
@@ -965,8 +1006,15 @@
       <!-- 좌측 키비주얼 (540×530, bg:#4545C4, radius:10) -->
       <div class="deeps__visual">
         <img
+          class="deeps__visual-img deeps__visual-img--service"
           src="./assets/images/img-deeps-keyvisual.png"
           alt="BORA DEEPS keyvisual"
+          draggable="false"
+        />
+        <img
+          class="deeps__visual-img deeps__visual-img--brand"
+          src="./assets/images/img-deeps-brand-keyvisual.png"
+          alt="BORA DEEPS Brand keyvisual"
           draggable="false"
         />
       </div>
@@ -982,14 +1030,15 @@
           </div>
           <!-- style_PXJDMC: Area Variable SemiBold 48px / 130% -->
           <h2 class="deeps__heading">
-            A reward ecosystem designed for user participation, powered by BORA.
+            <span class="deeps__heading-service">A reward ecosystem designed for user participation, powered by BORA.</span>
+            <span class="deeps__heading-brand">Introducing DEEPS: a user-driven reward ecosystem fueled by BORA.</span>
           </h2>
         </div>
 
         <!-- btns: row, gap:12, Size=56, width:200, radius:28 -->
         <div class="deeps__btns">
           <a href="#" class="btn btn--outlined btn--lg">DEEPS Service</a>
-          <a href="#" class="btn btn--outlined btn--lg">DEEPS Brand</a>
+          <a href="#" class="btn btn--outlined btn--lg btn--deeps-brand">DEEPS Brand</a>
         </div>
 
       </div>
