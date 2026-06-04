@@ -860,6 +860,43 @@
     }
 
     /* ============================================================
+       LOAD + SCROLL ANIMATIONS  (hero & DEEPS only)
+    ============================================================ */
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* GNB: 위에서 fade in (0.3s) */
+    .gnb {
+      animation: fadeInDown 0.3s ease-out both;
+    }
+    /* Hero title: 아래→위 fade in (0.5s, delay 0.2s) */
+    .hero__headline {
+      animation: fadeSlideUp 0.5s ease-out 0.2s both;
+    }
+    /* Hero sub: 아래→위 fade in (0.5s, delay 0.4s) */
+    .hero__sub {
+      animation: fadeSlideUp 0.5s ease-out 0.4s both;
+    }
+
+    /* DEEPS card: 초기 숨김 → IntersectionObserver로 .is-visible 부여 */
+    .deeps__card {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+    .deeps__card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
        RESPONSIVE
     ============================================================ */
     @media (max-width: 1280px) {
@@ -1249,5 +1286,21 @@
     </div>
   </footer>
 
+  <script>
+    // DEEPS card — 스크롤해서 화면에 들어올 때 등장
+    const deepsCard = document.querySelector('.deeps__card');
+    if (deepsCard) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            deepsCard.classList.add('is-visible');
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.15 }
+      );
+      observer.observe(deepsCard);
+    }
+  </script>
 </body>
 </html>
