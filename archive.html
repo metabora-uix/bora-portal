@@ -97,9 +97,9 @@
     .archive-container {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: stretch;
       gap: 100px;
-      padding: 64px 48px 80px;
+      padding: 64px var(--layout-gutter) 80px;
     }
 
     /* ============================================================
@@ -109,7 +109,7 @@
       display: flex;
       flex-direction: column;
       gap: 24px;
-      width: var(--layout-content);
+      width: 100%;
     }
 
     .arc-section-heading {
@@ -545,8 +545,7 @@
     ============================================================ */
     @media (max-width: 1400px) {
       .gnb { padding: 16px clamp(24px, 5vw, 288px); }
-      .archive-container { padding: 48px 24px 80px; }
-      .arc-section { width: min(var(--layout-content), 100%); }
+      .archive-container { padding: 48px 40px 80px; }
       .arc-stat-row { flex-wrap: wrap; }
       .arc-contract-row { max-width: 100%; }
     }
