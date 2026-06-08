@@ -940,7 +940,7 @@
     .news__card {
       opacity: 0;
       transform: translateY(30px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out, background 0.2s ease, border-color 0.2s ease;
+      transition: opacity 1s ease-out, transform 1s ease-out, background 0.2s ease, border-color 0.2s ease;
     }
     .news__card.is-visible {
       opacity: 1;
@@ -1389,8 +1389,8 @@
       observer.observe(blockchain);
     }
 
-    // News cards — 카드별 개별 IntersectionObserver (delay: 0s / 0.15s / 0.3s)
-    const newsCardDelays = [0, 0.15, 0.3];
+    // News cards — 카드별 개별 IntersectionObserver (delay: 0s / 0.2s / 0.4s)
+    const newsCardDelays = [0, 0.2, 0.4];
     document.querySelectorAll('.news__card').forEach((card, i) => {
       const obs = new IntersectionObserver(
         ([entry]) => {
