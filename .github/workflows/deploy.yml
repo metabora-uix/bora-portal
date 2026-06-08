@@ -26,7 +26,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22 # 최신 버전으로 안정성 강화
 
       - name: Install pnpm
         run: npm install -g pnpm
@@ -43,7 +43,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'portal-B/dist'
+          path: 'portal-B/dist' # 빌드된 결과물 폴더를 정밀 조준
 
       - name: Deploy to GitHub Pages
         id: deployment
