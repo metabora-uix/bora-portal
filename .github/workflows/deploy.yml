@@ -35,8 +35,7 @@ jobs:
         run: |
           cd portal-B
           pnpm install --no-frozen-lockfile
-          # 💡 CI=false를 주어 피그마 메이크 특유의 자잘한 경고가 있어도 빌드를 강제로 통과시킵니다.
-          CI=false pnpm run build 
+          CI=false pnpm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -44,7 +43,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'portal-B/dist'
+          path: 'portal-B/dist' # 👈 portal-B 안에서 빌드된 결과물만 쏙 빼서 배포창구로 보냅니다.
 
       - name: Deploy to GitHub Pages
         id: deployment
