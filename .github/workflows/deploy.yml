@@ -1,4 +1,4 @@
-name: Deploy portal-b to Pages
+name: Deploy portal-B to Pages
 
 on:
   push:
@@ -33,7 +33,7 @@ jobs:
 
       - name: Install dependencies and Build
         run: |
-          cd portal-b
+          cd portal-B
           pnpm install --no-frozen-lockfile
           pnpm run build
 
@@ -43,7 +43,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'portal-b/dist'
+          path: 'portal-BF/dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
