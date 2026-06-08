@@ -2,20 +2,10 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 
-// Figma Make 고유 플러그인이 빌드 에러를 내지 않도록 안전하게 선언
-const figmaAssetResolver = () => ({
-  name: 'figma-asset-resolver',
-})
-const tailwindcss = () => ({
-  name: 'tailwindcss',
-})
-
 export default defineConfig({
-  base: './', // 👈 index.html과 짝을 이루는 안전한 상대 경로 설정
+  base: './', // index.html과 세트로 하얀 화면을 막아주는 안전한 상대 경로
   plugins: [
-    figmaAssetResolver(),
-    react(),
-    tailwindcss(),
+    react() // 꼬이기 쉬운 커스텀 플러그인들을 제외하고 리액트 기본 빌드로 안전하게 처리
   ],
   resolve: {
     alias: {
