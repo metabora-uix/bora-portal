@@ -10,7 +10,7 @@ const tailwindcss = () => ({
 })
 
 export default defineConfig({
-  base: './',
+  base: '/bora-portal/portal-B/',
   root: 'src/src',
   plugins: [
     figmaAssetResolver(),
