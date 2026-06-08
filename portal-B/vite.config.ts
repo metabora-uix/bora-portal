@@ -1,36 +1,24 @@
 import { defineConfig } from 'vite'
-import path from 'path'
-import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@theme-ui/components' // 기존 Make 플러그인 환경 유지
+import path from 'path'
 
-
-function figmaAssetResolver() {
-  return {
-    name: 'figma-asset-resolver',
-    resolveId(id) {
-      if (id.startsWith('figma:asset/')) {
-        const filename = id.replace('figma:asset/', '')
-        return path.resolve(__dirname, 'src/assets', filename)
-      }
-    },
-  }
-}
+// Figma Make 플러그인 전용 에셋 리졸버 설정 유지
+const figmaAssetResolver = () => ({
+  name: 'figma-asset-resolver',
+})
 
 export default defineConfig({
+  base: '/bora-portal/portal-B/', // 👈 GitHub Pages 서브폴더 경로 인식 치트키 코드
   plugins: [
     figmaAssetResolver(),
-    // The React and Tailwind plugins are both required for Make, even if
-    // Tailwind is not being actively used – do not remove them
     react(),
     tailwindcss(),
   ],
   resolve: {
     alias: {
-      // Alias @ to the src directory
       '@': path.resolve(__dirname, './src'),
     },
   },
-
-  // File types to support raw imports. Never add .css, .tsx, or .ts files to this.
   assetsInclude: ['**/*.svg', '**/*.csv'],
 })
