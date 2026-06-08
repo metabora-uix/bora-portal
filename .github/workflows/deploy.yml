@@ -28,14 +28,16 @@ jobs:
         with:
           node-version: 22
 
-      - name: Install pnpm
-        run: npm install -g pnpm
-
-      - name: Install dependencies and Build
+      - name: Install dependencies
         run: |
           cd portal-B
-          pnpm install --no-frozen-lockfile
-          CI=false pnpm run build
+          npm install --legacy-peer-deps
+          npm install react@18.3.1 react-dom@18.3.1
+
+      - name: Build
+        run: |
+          cd portal-B
+          CI=false npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

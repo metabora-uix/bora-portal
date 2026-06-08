@@ -10,7 +10,8 @@ const tailwindcss = () => ({
 })
 
 export default defineConfig({
-  base: './', // 👈 주소창 뒤에 폴더명이 안 붙는 환경에 맞춘 상대 경로
+  base: './',
+  root: 'src/src',
   plugins: [
     figmaAssetResolver(),
     react(),
@@ -18,8 +19,12 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': path.resolve(__dirname, './src/src'),
     },
   },
   assetsInclude: ['**/*.svg', '**/*.csv'],
+  build: {
+    outDir: '../../dist',
+    emptyOutDir: true,
+  },
 })
