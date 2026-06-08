@@ -2,3 +2,4 @@
 .omc
 **/.DS_Store
 **/.omc
+.env
