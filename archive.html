@@ -547,6 +547,96 @@
     /* ============================================================
        RESPONSIVE
     ============================================================ */
+    .footer {
+      background: #0D0D0D;
+      height: 470px;
+    }
+
+    .footer__deco-cross {
+      position: absolute;
+      left: 0;
+      top: 40px;
+      width: auto;
+      height: auto;
+    }
+
+    .footer__deco-grid {
+      position: absolute;
+      right: 0;
+      top: 40px;
+      width: auto;
+      height: auto;
+    }
+
+    .footer__inner {
+      position: relative;
+      max-width: 1344px;
+      margin: 0 auto;
+      padding: 40px 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: stretch;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    .footer__left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .footer__logo {
+      width: 122.67px;
+      height: 40px;
+    }
+
+    .footer__sns {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      gap: 16px;
+    }
+
+    .footer__sns-link img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .footer__contact {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .footer__contact-title {
+      color: #ffffff;
+      font-size: 28px;
+      line-height: 1.4;
+    }
+
+    .footer__contact-btn {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      align-self: flex-start;
+      color: #ffffff;
+      border: 1px solid #ffffff;
+      border-radius: 999px;
+      padding: 12px 24px;
+      text-decoration: none;
+      font-size: 16px;
+      white-space: nowrap;
+    }
+
+    .footer__copyright {
+      color: #90909A;
+      font-size: 12px;
+      margin-top: 16px;
+    }
+
     @media (max-width: 1400px) {
       .gnb { padding: 16px clamp(24px, 5vw, 288px); }
       .archive-container { padding: 48px 40px 80px; }
@@ -561,6 +651,11 @@
       .arc-section-heading { font-size: 28px; }
       .arc-entry { flex-direction: column; gap: 12px; }
       .arc-entry-date { width: auto; }
+      .footer__deco-cross { left: 24px; }
+      .footer__deco-grid  { right: 24px; width: 80px; height: auto; }
+      .footer__inner { flex-direction: column; gap: 48px; padding: 0 24px; }
+      .footer__left { gap: 40px; }
+      .footer__sns { align-items: flex-start; }
     }
   </style>
 </head>
@@ -916,6 +1011,42 @@
       });
     });
   </script>
+
+
+  <footer class="footer" aria-label="Site Footer">
+
+    <div class="footer__inner">
+      <!-- deco-cross: footer__inner 기준 좌상단 (left:0, top:40) -->
+      <img class="footer__deco-cross" src="./assets/icons/deco-footer-cross.svg" alt="" aria-hidden="true" draggable="false" />
+      <!-- deco-grid: footer__inner 기준 우상단 (right:0, top:40) -->
+      <img class="footer__deco-grid" src="./assets/icons/deco-footer-grid.svg" alt="" aria-hidden="true" draggable="false" />
+
+      <!-- 좌측: contact(상단) + brand(하단) -->
+      <div class="footer__left">
+        <!-- contact: title + button -->
+        <div class="footer__contact">
+          <p class="footer__contact-title">How can we help you?</p>
+          <a href="#" class="footer__contact-btn">Contact us <span aria-hidden="true">→</span></a>
+        </div>
+        <!-- brand: logo + copyright -->
+        <div class="footer__brand">
+          <img class="footer__logo" src="./assets/icons/logo-white.svg" alt="BORA" draggable="false" />
+          <p class="footer__copyright">© METABORA GAMES - FZCO All Rights Reserved</p>
+        </div>
+      </div>
+
+      <!-- 우측: SNS icons (align-self: flex-end) -->
+      <div class="footer__sns">
+        <a href="#" class="footer__sns-link" aria-label="Medium">
+          <img class="footer__sns-icon" src="./assets/icons/icon-medium.svg" alt="Medium" draggable="false" />
+        </a>
+        <a href="#" class="footer__sns-link" aria-label="X (Twitter)">
+          <img class="footer__sns-icon" src="./assets/icons/icon-x.svg" alt="X" draggable="false" />
+        </a>
+      </div>
+
+    </div>
+  </footer>
 
 </body>
 </html>
