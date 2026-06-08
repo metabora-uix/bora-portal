@@ -2,7 +2,7 @@ name: Deploy portal-b to Pages
 
 on:
   push:
-    branches: ["main"] # main 브랜치에 코드가 올라오면 실행
+    branches: ["main"]
 
 permissions:
   contents: read
@@ -23,21 +23,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
-
-      - name: Set up Node.js
+      - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-  
-        
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
       - name: Install dependencies and Build
         run: |
           cd portal-b
-          pnpm install
+          pnpm install --no-frozen-lockfile
           pnpm run build
 
       - name: Setup Pages
@@ -46,7 +43,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'portal-b/dist' # 빌드 완료된 결과물 폴더 위치
+          path: 'portal-b/dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
