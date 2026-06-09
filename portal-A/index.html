@@ -146,6 +146,7 @@
       justify-content: space-between;
       align-items: center;
       padding: var(--sp-gnb-v) var(--layout-gutter);
+      transition: background 0.3s ease;
     }
 
     /* BORA BI 로고 */
@@ -1399,6 +1400,14 @@
         { threshold: 0.1 }
       );
       observer.observe(blockchain);
+    }
+
+    // GNB — 스크롤 시 배경색 변경
+    const gnb = document.querySelector('.gnb');
+    if (gnb) {
+      window.addEventListener('scroll', () => {
+        gnb.style.background = window.scrollY > 0 ? '#ffffff' : 'transparent';
+      }, { passive: true });
     }
 
     // News cards — 카드별 개별 IntersectionObserver (delay: 0s / 0.2s / 0.4s)
