@@ -970,9 +970,13 @@
               </div>
 
               <div class="arc-more-row">
-                <button class="arc-more-btn">
+                <button class="arc-more-btn arc-more-btn--more">
                   +2 More
-                  <svg width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M1 1l6 5.5L1 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <button class="arc-more-btn arc-more-btn--less" style="display:none">
+                  Less
+                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M9 5L5 1 1 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
               </div>
 
@@ -1069,9 +1073,13 @@
               </div>
 
               <div class="arc-more-row">
-                <button class="arc-more-btn">
+                <button class="arc-more-btn arc-more-btn--more">
                   +3 More
-                  <svg width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M1 1l6 5.5L1 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <button class="arc-more-btn arc-more-btn--less" style="display:none">
+                  Less
+                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M9 5L5 1 1 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
               </div>
 
@@ -1145,13 +1153,25 @@
       });
     });
 
-    document.querySelectorAll('.arc-more-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const yearEntries = btn.closest('.arc-year-entries');
+    document.querySelectorAll('.arc-more-row').forEach(row => {
+      const moreBtn = row.querySelector('.arc-more-btn--more');
+      const lessBtn = row.querySelector('.arc-more-btn--less');
+      const yearEntries = row.closest('.arc-year-entries');
+
+      moreBtn.addEventListener('click', () => {
         yearEntries.querySelectorAll('.arc-entry--more').forEach(entry => {
           entry.style.display = 'flex';
         });
-        btn.closest('.arc-more-row').style.display = 'none';
+        moreBtn.style.display = 'none';
+        lessBtn.style.display = 'inline-flex';
+      });
+
+      lessBtn.addEventListener('click', () => {
+        yearEntries.querySelectorAll('.arc-entry--more').forEach(entry => {
+          entry.style.display = 'none';
+        });
+        lessBtn.style.display = 'none';
+        moreBtn.style.display = 'inline-flex';
       });
     });
   </script>
