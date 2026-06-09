@@ -140,11 +140,16 @@
       right: 0;
       z-index: 9999;
       width: 100%;
+      transition: background 0.3s ease;
+    }
+    .gnb__inner {
+      max-width: 1344px;
+      margin: 0 auto;
+      padding: 0 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: var(--sp-gnb-v) var(--layout-gutter);
-      transition: background 0.3s ease;
+      width: 100%;
     }
 
     /* BORA BI 로고 */
@@ -962,7 +967,7 @@
        RESPONSIVE
     ============================================================ */
     @media (max-width: 1280px) {
-      .gnb  { padding: var(--sp-gnb-v) clamp(24px, 5vw, 288px); }
+      .gnb__inner { padding: 0 clamp(24px, 5vw, 40px); }
       .hero__content {
         width: min(var(--hero-content-w), 88vw);
       }
@@ -977,7 +982,7 @@
     }
 
     @media (max-width: 768px) {
-      .gnb { padding: 14px 20px; }
+      .gnb__inner { padding: 14px 20px; }
       .gnb__btns .btn--outlined { display: none; }
       .gnb__btns .btn--filled {
         width: auto;
@@ -1047,22 +1052,24 @@
 
   <!-- GNB — body 직계 자식으로 배치해 isolation:isolate stacking context 탈출 -->
   <nav class="gnb" aria-label="Global Navigation">
+    <div class="gnb__inner">
 
-    <a href="/" class="gnb__logo" aria-label="BORA Portal">
-      <img
-        src="./assets/icons/logo.svg"
-        alt="BORA"
-        width="91"
-        height="30"
-        draggable="false"
-      />
-    </a>
+      <a href="/" class="gnb__logo" aria-label="BORA Portal">
+        <img
+          src="./assets/icons/logo.svg"
+          alt="BORA"
+          width="91"
+          height="30"
+          draggable="false"
+        />
+      </a>
 
-    <div class="gnb__btns">
-      <a href="#" class="btn btn--outlined">Token Swap</a>
-      <a href="./archive.html" class="btn btn--filled">BORA Archive</a>
+      <div class="gnb__btns">
+        <a href="#" class="btn btn--outlined">Token Swap</a>
+        <a href="./archive.html" class="btn btn--filled">BORA Archive</a>
+      </div>
+
     </div>
-
   </nav>
 
   <!-- hero + deeps + games를 하나의 relative 컨테이너로 묶어 bg 이미지 공유 -->
