@@ -308,6 +308,14 @@
       padding: 20px 24px;
       border-top: 1px solid var(--color-border-card);
     }
+    .arc-contracts--row {
+      flex-direction: row;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .arc-contracts--row .arc-contract-row {
+      max-width: 100%;
+    }
     .arc-contract-block {
       display: flex;
       flex-direction: column;
@@ -746,12 +754,19 @@
             </div>
 
             <!-- Contract addresses -->
-            <div class="arc-contracts">
+            <div class="arc-contracts arc-contracts--row">
               <div class="arc-contract-block">
                 <span class="arc-contract-label">Contract</span>
                 <div class="arc-contract-row">
                   <span class="arc-contract-addr">0x02cbe46fb8a1f579254a9b485788f2d86cad51aa</span>
                   <svg class="arc-icon-sm" viewBox="0 0 14 14" fill="none" aria-label="Copy"><rect x="4" y="4" width="8" height="8" rx="1" stroke="#767680" stroke-width="1.2"/><path d="M2 10V2h8" stroke="#767680" stroke-width="1.2" stroke-linecap="round"/></svg>
+                  <svg class="arc-icon-sm" viewBox="0 0 14 14" fill="none" aria-label="Open"><path d="M5.5 2H2v10h10V8.5M8 2h4v4M12 2L6.5 7.5" stroke="#767680" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+              <div class="arc-contract-block">
+                <span class="arc-contract-label">Burn Address</span>
+                <div class="arc-contract-row">
+                  <span class="arc-contract-addr">0x0000000000000000000000000000000000feefed</span>
                   <svg class="arc-icon-sm" viewBox="0 0 14 14" fill="none" aria-label="Open"><path d="M5.5 2H2v10h10V8.5M8 2h4v4M12 2L6.5 7.5" stroke="#767680" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
               </div>
